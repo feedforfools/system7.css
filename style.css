@@ -1,0 +1,1388 @@
+/**
+ * system7.css
+ * Based on system.css by Sakun Acharige <sakun.co>
+ * Modified for System 7 grayscale aesthetic
+ */
+
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+
+:root {
+  /* ---- System 7 Color Palette ---- */
+  /* Base colors */
+  --sys-color-white: #FFFFFF;
+  --sys-color-black: #000000;
+  
+  /* System 7 Grayscale Colors */
+  --surface: #FFFFFF;
+  --header: #f1f1f1;
+  --text-color: #000000;
+  
+  /* Border colors */
+  --border-active: #000000;
+  --border-inactive: #808080;
+  --drop-shadow: #000000;
+  
+  /* Legacy compatibility tokens */
+  --primary: var(--surface);
+  --secondary: var(--sys-color-black);
+  --tertiary: #a0a0a0;
+  --disabled: #a0a0a0;
+
+  /* Desktop checkerboard pattern colors */
+  --desktop-pattern-dark: #a0a0a0;
+  --desktop-pattern-light: #c8c8c8;
+
+  /* Title bar stripe color */
+  --title-bar-stripe: #949494;
+  --title-bar-border-dark-glow: #abaad3;
+  --title-bar-border-light-glow: #d6d5fd;
+  
+  /* Title bar stripe parameters */
+  /* Pattern: glow stripe | top margin | 6 gray stripes | 5 transparent gaps | bottom margin | glow stripe */
+  /* Total: 6 grey stripes + 5 gaps = 11 bands in the middle section (glow stripes are 1px at edges) */
+  --stripe-count: 6;
+  --stripe-margin: 12%;        /* Top and bottom margin (after glow stripe) */
+  --stripe-bands: 11;          /* stripe-count + (stripe-count - 1) gaps */
+  /* Glow stripe width matches vertical stripes */
+  --horizontal-glow-width: 2px;
+  /* Calculate thickness: (100% - 2 * margin - 2 * glow width) / total bands */
+  --stripe-thickness: calc((100% - 2 * var(--stripe-margin) - 2 * var(--horizontal-glow-width)) / var(--stripe-bands));
+  --stripe-gap: var(--stripe-thickness);  /* Same as thickness for even spacing */
+  /* Start position for grey stripes: glow stripe + margin */
+  --stripe-start: calc(var(--horizontal-glow-width) + var(--stripe-margin));
+  /* Vertical stripe width for left and right edges */
+  --vertical-stripe-width: 2px;
+  
+  /* Title bar button parameters */
+  --button-hole-size: 20px;
+  --button-item-size: 14px;
+  --button-hole-bg: #d6d5fd;
+  --button-hole-active-bg: #abaad3;
+  --button-hole-inset-dark: #555487;
+  --button-inner-bg: #c0c0c0;
+  --button-inner-shadow: #555487;
+  
+  /* Button active state border parameters */
+  --button-active-border-color: #000000;
+  --button-active-border-thickness: 2px;
+  --button-active-border-segment-length: 7px;
+  --button-active-corner-inner-size: 2px;
+  --button-active-corner-outer-size: 2px;
+  --button-active-corner-inner-offset: 4px;
+  --button-active-corner-outer-offset: 6px;
+
+  /* Arrow icons for scrollbars */
+  --arrow-color: var(--border-active);
+  --arrow-bg: var(--surface);
+  --arrow-active-bg: var(--tertiary);
+  --scrollbar-button-size: 30px;
+
+
+  --title-bar-height: 30px;
+  --details-bar-height: 26px;
+  --separator-height: 2px;
+
+  /* Inactive window scrollbar placeholder parameters */
+  --inactive-scrollbar-size: 30px;  /* Same as --scrollbar-button-size */
+
+  /* ---- System 7 Border System ---- */
+  /* Active window: black border + black drop shadow */
+  --border-width: 2px;
+  --window-border-active: var(--border-width) solid var(--border-active);
+  --window-shadow-active: 2px 2px 0 var(--drop-shadow);
+  
+  /* Inactive window: gray border + black drop shadow */
+  --window-border-inactive: var(--border-width) solid var(--border-inactive);
+  --window-shadow-inactive: 2px 2px 0 var(--drop-shadow);
+
+  /* Legacy shadow */
+  --box-shadow: 2px 2px 0 var(--drop-shadow);
+
+  /* Spacing */
+  --element-spacing: 8px;
+  --grouped-element-spacing: 6px;
+  --radio-width: 12px;
+  --checkbox-width: 13px;
+  --radio-label-spacing: 6px;
+
+  /* Some detailed computations for radio buttons and checkboxes (from 98.css) */
+  --radio-total-width-precalc: var(--radio-width) + var(--radio-label-spacing);
+  --radio-total-width: calc(var(--radio-total-width-precalc));
+  --radio-left: calc(-1 * var(--radio-total-width-precalc));
+  --radio-dot-width: 6px;
+  --radio-dot-top: calc(var(--radio-width) / 2 - var(--radio-dot-width) / 2);
+  --radio-dot-left: calc(
+    -1 * (var(--radio-total-width-precalc)) + var(--radio-width) / 2 - var(
+        --radio-dot-width
+      ) / 2
+  );
+
+  --checkbox-total-width-precalc: var(--checkbox-width) +
+    var(--radio-label-spacing);
+  --checkbox-total-width: calc(var(--checkbox-total-width-precalc));
+  --checkbox-left: calc(-1 * var(--checkbox-total-width-precalc));
+  --checkmark-width: 12px;
+  --checkmark-top: 2px;
+  --checkmark-left: 2px;
+}
+
+/* ============================================
+   FONTS
+   ============================================ */
+
+@font-face {
+  font-family: Chicago;
+  src: url("fonts/ChicagoFLF.woff") format("woff");
+  src: url("fonts/ChicagoFLF.woff2") format("woff2");
+}
+@font-face {
+  font-family: Monaco;
+  src: url("fonts/monaco.woff") format("woff");
+  src: url("fonts/monaco.woff2") format("woff2");
+}
+
+/* Fonts below are recreations by Giles Booth */
+@font-face {
+  font-family: Chicago_12;
+  src: url("fonts/ChiKareGo2.woff") format("woff");
+  src: url("fonts/ChiKareGo2.woff2") format("woff2");
+}
+@font-face {
+  font-family: Geneva_9;
+  src: url("fonts/FindersKeepers.woff") format("woff");
+  src: url("fonts/FindersKeepers.woff2") format("woff2");
+}
+
+/* ============================================
+   SCROLLBARS
+   ============================================ */
+
+/* Scrollbar base styles */
+::-webkit-scrollbar {
+  width: var(--scrollbar-button-size);
+  background-color: var(--header);
+}
+
+::-webkit-scrollbar:horizontal {
+  height: var(--scrollbar-button-size);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--header);
+  border-left: 2px solid var(--border-active);
+}
+
+::-webkit-scrollbar-track:active {
+  background-color: var(--desktop-pattern-dark);
+  background-image: url("data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23c8c8c8'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23c8c8c8'/%3E%3C/svg%3E");
+  background-size: 4px 4px;
+  border-left: 2px solid var(--border-active);
+}
+
+::-webkit-scrollbar-track:horizontal {
+  border-left: none;
+  border-top: 2px solid var(--border-active);
+}
+
+::-webkit-scrollbar-thumb {
+  max-height: 40px;
+
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement,
+::-webkit-scrollbar-button:horizontal:end:increment,
+::-webkit-scrollbar-button:vertical:start:decrement,
+::-webkit-scrollbar-button:vertical:end:increment {
+  display: block;
+}
+
+::-webkit-scrollbar-button:vertical:start,
+::-webkit-scrollbar-button:vertical:end {
+  background: var(--arrow-bg);
+  border-left: 2px solid var(--border-active);
+  height: var(--scrollbar-button-size);
+  width: var(--scrollbar-button-size);
+}
+
+::-webkit-scrollbar-button:horizontal:start,
+::-webkit-scrollbar-button:horizontal:end {
+  background: var(--arrow-bg);
+  border-top: 2px solid var(--border-active);
+  height: var(--scrollbar-button-size);
+  width: var(--scrollbar-button-size);
+}
+
+::-webkit-scrollbar-button:vertical:start {
+  border-bottom: 2px solid var(--border-active);
+}
+
+::-webkit-scrollbar-button:vertical:end {
+  border-top: 2px solid var(--border-active);
+}
+
+::-webkit-scrollbar-button:horizontal:start {
+  border-right: 2px solid var(--border-active);
+}
+::-webkit-scrollbar-button:horizontal:end {
+  border-left: 2px solid var(--border-active);
+}
+
+/* UP ARROW - Pixel-perfect System 7 using gradients */
+::-webkit-scrollbar-button:vertical:start:decrement {
+  background: var(--arrow-bg);
+  background-image:
+    /* Row 1: center pixel */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Row 2: 3 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Row 3: 5 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Row 4: 7 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Row 5: 2 vertical bars (left and right) */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Row 6: 2 vertical bars */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Bottom horizontal line */
+    linear-gradient(var(--arrow-color), var(--arrow-color));
+  background-size:
+    1px 1px,
+    3px 1px,
+    5px 1px,
+    7px 1px,
+    1px 1px,
+    1px 1px,
+    1px 1px,
+    1px 1px,
+    7px 1px;
+  background-position:
+    center 3px,
+    center 4px,
+    center 5px,
+    center 6px,
+    calc(50% - 3px) 7px,
+    calc(50% + 3px) 7px,
+    calc(50% - 3px) 8px,
+    calc(50% + 3px) 8px,
+    center 9px;
+  background-repeat: no-repeat;
+}
+
+/* DOWN ARROW - Pixel-perfect System 7 using gradients */
+::-webkit-scrollbar-button:vertical:end:increment {
+  background: var(--arrow-bg);
+  background-image:
+    /* Top horizontal line */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Row 1: 2 vertical bars (left and right) */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Row 2: 2 vertical bars */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Row 3: 7 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Row 4: 5 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Row 5: 3 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Row 6: center pixel */
+    linear-gradient(var(--arrow-color), var(--arrow-color));
+  background-size:
+    7px 1px,
+    1px 1px,
+    1px 1px,
+    1px 1px,
+    1px 1px,
+    7px 1px,
+    5px 1px,
+    3px 1px,
+    1px 1px;
+  background-position:
+    center 3px,
+    calc(50% - 3px) 4px,
+    calc(50% + 3px) 4px,
+    calc(50% - 3px) 5px,
+    calc(50% + 3px) 5px,
+    center 6px,
+    center 7px,
+    center 8px,
+    center 9px;
+  background-repeat: no-repeat;
+}
+
+/* LEFT ARROW - Pixel-perfect System 7 using gradients */
+::-webkit-scrollbar-button:horizontal:start:decrement {
+  background: var(--arrow-bg);
+  background-image:
+    /* Column 1: center pixel */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Column 2: 3 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Column 3: 5 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Column 4: 7 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Column 5: 2 horizontal bars (top and bottom) */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Column 6: 2 horizontal bars */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Right vertical line */
+    linear-gradient(var(--arrow-color), var(--arrow-color));
+  background-size:
+    1px 1px,
+    1px 3px,
+    1px 5px,
+    1px 7px,
+    1px 1px,
+    1px 1px,
+    1px 1px,
+    1px 1px,
+    1px 7px;
+  background-position:
+    3px center,
+    4px center,
+    5px center,
+    6px center,
+    7px calc(50% - 3px),
+    7px calc(50% + 3px),
+    8px calc(50% - 3px),
+    8px calc(50% + 3px),
+    9px center;
+  background-repeat: no-repeat;
+}
+
+/* RIGHT ARROW - Pixel-perfect System 7 using gradients */
+::-webkit-scrollbar-button:horizontal:end:increment {
+  background: var(--arrow-bg);
+  background-image:
+    /* Left vertical line */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Column 1: 2 horizontal bars (top and bottom) */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Column 2: 2 horizontal bars */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Column 3: 7 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Column 4: 5 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Column 5: 3 pixels */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    /* Column 6: center pixel */
+    linear-gradient(var(--arrow-color), var(--arrow-color));
+  background-size:
+    1px 7px,
+    1px 1px,
+    1px 1px,
+    1px 1px,
+    1px 1px,
+    1px 7px,
+    1px 5px,
+    1px 3px,
+    1px 1px;
+  background-position:
+    3px center,
+    4px calc(50% - 3px),
+    4px calc(50% + 3px),
+    5px calc(50% - 3px),
+    5px calc(50% + 3px),
+    6px center,
+    7px center,
+    8px center,
+    9px center;
+  background-repeat: no-repeat;
+}
+
+/* ACTIVE STATES - Gray background with filled arrows */
+::-webkit-scrollbar-button:vertical:start:active {
+  background: var(--arrow-active-bg);
+  background-image:
+    /* Filled triangle for active state */
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color));
+  background-size:
+    1px 1px,
+    3px 1px,
+    5px 1px,
+    7px 1px,
+    7px 1px,
+    7px 1px,
+    7px 1px,
+    7px 1px,
+    7px 1px;
+  background-position:
+    center 3px,
+    center 4px,
+    center 5px,
+    center 6px,
+    center 7px,
+    center 8px,
+    center 9px,
+    center 10px,
+    center 11px;
+  background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-button:vertical:end:active {
+  background: var(--arrow-active-bg);
+  background-image:
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color));
+  background-size:
+    7px 1px,
+    7px 1px,
+    7px 1px,
+    7px 1px,
+    7px 1px,
+    7px 1px,
+    5px 1px,
+    3px 1px,
+    1px 1px;
+  background-position:
+    center 3px,
+    center 4px,
+    center 5px,
+    center 6px,
+    center 7px,
+    center 8px,
+    center 9px,
+    center 10px,
+    center 11px;
+  background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-button:horizontal:start:active {
+  background: var(--arrow-active-bg);
+  background-image:
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color));
+  background-size:
+    1px 1px,
+    1px 3px,
+    1px 5px,
+    1px 7px,
+    1px 7px,
+    1px 7px,
+    1px 7px,
+    1px 7px,
+    1px 7px;
+  background-position:
+    3px center,
+    4px center,
+    5px center,
+    6px center,
+    7px center,
+    8px center,
+    9px center,
+    10px center,
+    11px center;
+  background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-button:horizontal:end:active {
+  background: var(--arrow-active-bg);
+  background-image:
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color)),
+    linear-gradient(var(--arrow-color), var(--arrow-color));
+  background-size:
+    1px 7px,
+    1px 7px,
+    1px 7px,
+    1px 7px,
+    1px 7px,
+    1px 7px,
+    1px 5px,
+    1px 3px,
+    1px 1px;
+  background-position:
+    3px center,
+    4px center,
+    5px center,
+    6px center,
+    7px center,
+    8px center,
+    9px center,
+    10px center,
+    11px center;
+  background-repeat: no-repeat;
+}
+
+/* Hide scrollbars in inactive windows - Pure CSS */
+.window.inactive .window-pane::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbars when content doesn't overflow - Requires data attribute */
+.window-pane[data-scrollable="false"]::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================
+   SCROLLBAR CORNER
+   ============================================ */
+
+::-webkit-scrollbar-corner {
+  border-left: 2px solid var(--border-active);
+  border-top: 2px solid var(--border-active);
+  background: 
+    /* Smaller square */
+    linear-gradient(var(--button-inner-shadow), var(--button-inner-shadow)) 14px 8px / 2px 8px no-repeat,
+    linear-gradient(var(--button-inner-shadow), var(--button-inner-shadow)) 8px 14px / 8px 2px no-repeat,
+    linear-gradient(var(--button-inner-bg), var(--button-inner-bg)) 8px 8px / 6px 6px no-repeat,
+    linear-gradient(var(--button-hole-bg), var(--button-hole-bg)) 6px 6px / 10px 2px no-repeat,
+    linear-gradient(var(--button-hole-bg), var(--button-hole-bg)) 6px 6px / 2px 10px no-repeat,
+    linear-gradient(var(--button-inner-shadow), var(--button-inner-shadow)) 4px 4px / 12px 2px no-repeat,
+    linear-gradient(var(--button-inner-shadow), var(--button-inner-shadow)) 4px 4px / 2px 12px no-repeat,
+    /* Larger square */
+    linear-gradient(var(--button-inner-shadow), var(--button-inner-shadow)) 22px 10px / 2px 14px no-repeat,
+    linear-gradient(var(--button-inner-shadow), var(--button-inner-shadow)) 10px 22px / 14px 2px no-repeat,
+    linear-gradient(var(--button-inner-bg), var(--button-inner-bg)) 10px 10px / 14px 14px no-repeat,
+    linear-gradient(var(--button-hole-bg), var(--button-hole-bg)) 8px 8px / 16px 2px no-repeat,
+    linear-gradient(var(--button-hole-bg), var(--button-hole-bg)) 8px 8px / 2px 16px no-repeat,
+    linear-gradient(var(--button-inner-shadow), var(--button-inner-shadow)) 6px 6px / 18px 2px no-repeat,
+    linear-gradient(var(--button-inner-shadow), var(--button-inner-shadow)) 6px 6px / 2px 18px no-repeat,
+    /* Base background */
+    var(--header);
+}
+
+/* ============================================
+   BASE STYLES & TYPOGRAPHY
+   ============================================ */
+
+body {
+  /* System 7 checkerboard/dither pattern background */
+  background-color: var(--desktop-pattern-dark);
+  background-image: url("data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23c8c8c8'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23c8c8c8'/%3E%3C/svg%3E");
+  background-size: 4px 4px;
+  background-attachment: fixed;
+  font-family: Chicago, Geneva, sans-serif;
+  color: var(--text-color);
+}
+
+/* Utility class for desktop checkerboard pattern */
+.desktop-pattern {
+  background-color: var(--desktop-pattern-dark);
+  background-image: url("data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23c8c8c8'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23c8c8c8'/%3E%3C/svg%3E");
+  background-size: 4px 4px;
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+hr {
+  border-top: 0.15em solid var(--secondary);
+}
+
+h1,
+.heading {
+  font-family: Chicago;
+  font-size: 1em;
+}
+
+h2 {
+  font-family: Chicago;
+  font-size: 2em;
+}
+
+/* ============================================
+   WINDOWS & DIALOGS
+   ============================================ */
+
+.window {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 1rem;
+  min-width: 320px;
+  min-height: 215px;
+  overflow: hidden;
+  background: var(--surface);
+  border: var(--window-border-active);
+  box-shadow: var(--window-shadow-active);
+  font-family: Chicago_12, Geneva_9, Chicago, Geneva, sans-serif;
+}
+
+.window.inactive {
+  border: var(--window-border-inactive);
+  box-shadow: var(--window-shadow-inactive);
+}
+
+.window-pane {
+  position: relative;
+  overflow: scroll;
+  flex: 1;
+  padding: 1rem 2rem;
+  font-size: 27px;
+  letter-spacing: -0.025em;
+  background: var(--sys-color-white);
+  font-family: Geneva_9, Geneva, sans-serif;
+}
+
+.window.inactive .window-pane::before {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--inactive-scrollbar-size) - var(--border-width));
+  left: 0;
+  right: 0;
+  height: var(--border-width);
+  background: var(--border-active);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.window.inactive .window-pane::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: calc(var(--inactive-scrollbar-size) - var(--border-width));
+  bottom: 0;
+  width: var(--border-width);
+  background: var(--border-active);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.separator {
+  flex: none;
+  display: block;
+  height: var(--separator-height);
+  border-bottom: 2px solid var(--secondary);
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.separator::before,
+.separator::after {
+  content: none;
+}
+
+.details-bar {
+  font-family: Geneva_9, Geneva, sans-serif;
+  flex: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: var(--details-bar-height);
+  justify-content: space-between;
+  padding: 0.2rem 0.8rem;
+  border-bottom: 2px solid var(--secondary);
+  font-size: 28px;
+  font-weight: normal;
+}
+
+.standard-dialog {
+  padding: 10px;
+  background: var(--surface);
+  border: var(--window-border-active);
+}
+
+.modal-dialog, .alert-box {
+  width: auto;
+  padding: 13px;
+  background: var(--surface);
+  border: var(--window-border-active);
+}
+
+.modal-contents, .alert-contents {
+  padding: 10px;
+}
+
+.modeless-dialog {
+  height: 100%;
+  padding: 1.5rem 0.5rem 0.5rem 0.5rem;
+  font-size: 18px;
+  letter-spacing: -0.025em;
+}
+
+.inner-border {
+  border: 4px solid var(--border-active);
+  padding: 4px;
+}
+.outer-border {
+  border: 2px solid var(--border-active);
+  padding: 4px;
+}
+
+/* ============================================
+   TITLE BAR & WINDOW CHROME
+   ============================================ */
+
+.title-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: var(--title-bar-height);
+  margin: 0;
+  padding: 1px 7px;
+  /* 
+   * System 7 title bar stripes - parametric version
+   * Structure: glow stripe | margin-top | (stripe + gap) × 5 | stripe | margin-bottom | glow stripe
+   * 
+   * Parameters (defined in :root)
+   */
+  --s: var(--stripe-thickness);
+  --g: var(--stripe-gap);
+  --p0: var(--stripe-start);
+  --p1: calc(var(--p0) + var(--s));
+  --p2: calc(var(--p1) + var(--g));
+  --p3: calc(var(--p2) + var(--s));
+  --p4: calc(var(--p3) + var(--g));
+  --p5: calc(var(--p4) + var(--s));
+  --p6: calc(var(--p5) + var(--g));
+  --p7: calc(var(--p6) + var(--s));
+  --p8: calc(var(--p7) + var(--g));
+  --p9: calc(var(--p8) + var(--s));
+  --p10: calc(var(--p9) + var(--g));
+  --p11: calc(var(--p10) + var(--s));
+  
+  /* Horizontal glow stripe positions */
+  /* Top glow stripe: at very top (0) */
+  --glow-top-start: 0%;
+  --glow-top-end: var(--horizontal-glow-width);
+  /* Bottom glow stripe: at very bottom */
+  --glow-bottom-start: calc(100% - var(--horizontal-glow-width));
+  --glow-bottom-end: 100%;
+  
+  background: 
+    /* Right vertical stripe */
+    linear-gradient(
+      to left,
+      var(--title-bar-border-dark-glow) 0,
+      var(--title-bar-border-dark-glow) var(--vertical-stripe-width),
+      transparent var(--vertical-stripe-width)
+    ),
+    /* Left vertical stripe */
+    linear-gradient(
+      to right,
+      var(--title-bar-border-light-glow) 0,
+      var(--title-bar-border-light-glow) var(--vertical-stripe-width),
+      transparent var(--vertical-stripe-width)
+    ),
+    /* Horizontal stripes with top and bottom glow stripes */
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent var(--glow-top-start),
+      var(--title-bar-border-light-glow) var(--glow-top-start),
+      var(--title-bar-border-light-glow) var(--glow-top-end),
+      transparent var(--glow-top-end),
+      transparent var(--p0),
+      var(--title-bar-stripe) var(--p0),
+      var(--title-bar-stripe) var(--p1),
+      transparent var(--p1),
+      transparent var(--p2),
+      var(--title-bar-stripe) var(--p2),
+      var(--title-bar-stripe) var(--p3),
+      transparent var(--p3),
+      transparent var(--p4),
+      var(--title-bar-stripe) var(--p4),
+      var(--title-bar-stripe) var(--p5),
+      transparent var(--p5),
+      transparent var(--p6),
+      var(--title-bar-stripe) var(--p6),
+      var(--title-bar-stripe) var(--p7),
+      transparent var(--p7),
+      transparent var(--p8),
+      var(--title-bar-stripe) var(--p8),
+      var(--title-bar-stripe) var(--p9),
+      transparent var(--p9),
+      transparent var(--p10),
+      var(--title-bar-stripe) var(--p10),
+      var(--title-bar-stripe) var(--p11),
+      transparent var(--p11),
+      transparent var(--glow-bottom-start),
+      var(--title-bar-border-dark-glow) var(--glow-bottom-start),
+      var(--title-bar-border-dark-glow) var(--glow-bottom-end),
+      transparent var(--glow-bottom-end),
+      transparent 100%
+    );
+  background-color: var(--header);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  border-bottom: 2px solid var(--border-active);
+}
+
+.title-bar .title {
+  padding: 0 10px 0 14px;
+  margin: 0 auto;
+  font-size: 28px;
+  font-weight: normal;
+  line-height: 28px;
+  text-align: center;
+  background: var(--header);
+  cursor: default;
+  font-family: Chicago_12, Chicago, sans-serif;
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+.inactive-title-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin: 0;
+  padding: 1px 7px;
+  background: var(--surface);
+  border-bottom: 2px solid var(--border-inactive);
+}
+
+.inactive-title-bar .title {
+  padding: 0 10px 0 14px;
+  margin: 0 auto;
+  font-size: 28px;
+  font-weight: normal;
+  line-height: 28px;
+  text-align: center;
+  background: var(--surface);
+  cursor: default;
+  font-family: Chicago_12, Chicago, sans-serif;
+  color: var(--tertiary);
+}
+
+/* Title bar buttons - System 7 close box and zoom box */
+.title-bar button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--button-hole-size);
+  width: var(--button-hole-size);
+  margin: 5px;
+  padding: 0;
+  outline: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: var(--button-hole-bg);
+  box-shadow: 
+    inset 2px 2px 0 var(--button-hole-inset-dark),
+    0 0 0 2px var(--header);
+}
+
+/* Inner raised button element */
+.title-bar button::before {
+  content: "";
+  display: block;
+  width: var(--button-item-size);
+  height: var(--button-item-size);
+  margin-top: 1px;
+  margin-left: 1px;
+  background: var(--button-inner-bg);
+  box-shadow: 
+    inset -2px -2px 0 var(--button-inner-shadow);
+}
+
+/* Interaction: Active state (Clicked) */
+.title-bar button:active {
+  /* Black border covering the inset */
+  background: var(--button-hole-active-bg);
+  background-image: 
+    /* Top segment */
+    linear-gradient(to bottom, var(--button-active-border-color) 0, var(--button-active-border-color) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
+    /* Right segment */
+    linear-gradient(to left, var(--button-active-border-color) 0, var(--button-active-border-color) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
+    /* Bottom segment */
+    linear-gradient(to top, var(--button-active-border-color) 0, var(--button-active-border-color) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
+    /* Left segment */
+    linear-gradient(to right, var(--button-active-border-color) 0, var(--button-active-border-color) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
+    /* Top-right corner inner pixel */
+    linear-gradient(var(--button-active-border-color), var(--button-active-border-color)),
+    /* Bottom-right corner inner pixel */
+    linear-gradient(var(--button-active-border-color), var(--button-active-border-color)),
+    /* Bottom-left corner inner pixel */
+    linear-gradient(var(--button-active-border-color), var(--button-active-border-color)),
+    /* Top-left corner inner pixel */
+    linear-gradient(var(--button-active-border-color), var(--button-active-border-color)),
+    /* Top-right corner outer pixel */
+    linear-gradient(var(--button-active-border-color), var(--button-active-border-color)),
+    /* Bottom-right corner outer pixel */
+    linear-gradient(var(--button-active-border-color), var(--button-active-border-color)),
+    /* Bottom-left corner outer pixel */
+    linear-gradient(var(--button-active-border-color), var(--button-active-border-color)),
+    /* Top-left corner outer pixel */
+    linear-gradient(var(--button-active-border-color), var(--button-active-border-color));
+  background-size: 
+    var(--button-active-border-thickness) calc(var(--button-active-border-segment-length) + 1px), 
+    calc(var(--button-active-border-segment-length) + 1px) var(--button-active-border-thickness), 
+    var(--button-active-border-thickness) calc(var(--button-active-border-segment-length) + 1px), 
+    calc(var(--button-active-border-segment-length) + 1px) var(--button-active-border-thickness), 
+    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
+    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
+    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
+    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
+    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size), 
+    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size), 
+    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size), 
+    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size);
+  background-position: 
+    center top, 
+    right center, 
+    center bottom, 
+    left center, 
+    calc(50% + var(--button-active-corner-inner-offset)) calc(50% - var(--button-active-corner-inner-offset)), 
+    calc(50% + var(--button-active-corner-inner-offset)) calc(50% + var(--button-active-corner-inner-offset)), 
+    calc(50% - var(--button-active-corner-inner-offset)) calc(50% + var(--button-active-corner-inner-offset)), 
+    calc(50% - var(--button-active-corner-inner-offset)) calc(50% - var(--button-active-corner-inner-offset)), 
+    calc(50% + var(--button-active-corner-outer-offset)) calc(50% - var(--button-active-corner-outer-offset)), 
+    calc(50% + var(--button-active-corner-outer-offset)) calc(50% + var(--button-active-corner-outer-offset)), 
+    calc(50% - var(--button-active-corner-outer-offset)) calc(50% + var(--button-active-corner-outer-offset)), 
+    calc(50% - var(--button-active-corner-outer-offset)) calc(50% - var(--button-active-corner-outer-offset));
+  background-repeat: no-repeat;
+  box-shadow: 
+    inset var(--button-active-border-thickness) var(--button-active-border-thickness) 0 var(--button-active-border-color),
+    inset calc(-1 * var(--button-active-border-thickness)) calc(-1 * var(--button-active-border-thickness)) 0 var(--button-active-border-color),
+    0 0 0 var(--button-active-border-thickness) var(--header);
+}
+
+.title-bar button:active::before, .title-bar button.resize:active::after {
+  visibility: hidden;
+}
+
+.title-bar button span {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Close box button (left) */
+.title-bar button.close {
+  margin-left: 7px; /* Adjusted spacing for aesthetics */
+}
+
+/* Zoom/resize box button (right) */
+.title-bar button.resize {
+  margin-right: 7px;
+}
+
+.title-bar button.resize::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: calc(var(--button-item-size) / 1.5);
+  height: calc(var(--button-item-size) / 1.5);
+  margin-top: -3px;
+  margin-left: -3px;
+  background: var(--button-inner-bg);
+  box-shadow: 
+    inset -2px -2px 0 var(--button-inner-shadow);
+}
+
+.title-bar button.hidden {
+  visibility: hidden;
+}
+
+/* Inactive window buttons - Ghosted look */
+.inactive-title-bar button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  padding: 0;
+  
+  /* Inactive: Gray border, White background */
+  border: 1px solid var(--border-inactive);
+  background: var(--sys-color-white);
+  cursor: default;
+  flex-shrink: 0;
+}
+
+.inactive-title-bar button::before {
+  content: "";
+  display: block;
+  width: 7px;
+  height: 7px;
+  background: var(--sys-color-white);
+  /* Inactive inner border is gray */
+  border: 1px solid var(--border-inactive);
+  box-shadow: none;
+}
+
+.inactive-title-bar button.close {
+  margin-right: 6px;
+}
+
+.inactive-title-bar button.resize {
+  margin-left: 6px;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn, .btn-default {
+  min-height: 23px;
+  min-width: 59px;
+  padding: 0 12px;
+  text-align: center;
+  background: var(--sys-color-white);
+  border: 1px solid var(--border-active);
+  border-radius: 4px; /* System 7 buttons are slightly rounded */
+  box-shadow: var(--box-shadow);
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 18px;
+  font-family: Chicago_12;
+  cursor: pointer;
+}
+
+.btn:active {
+  background: var(--sys-color-black);
+  border-radius: 4px;
+  border: 1px solid var(--border-active);
+  box-shadow: var(--box-shadow);
+  color: var(--sys-color-white);
+  font-family: Chicago_12;
+}
+
+.btn:disabled {
+  min-height: 23px;
+  min-width: 59px;
+  padding: 0 12px;
+  text-align: center;
+  background: var(--sys-color-white);
+  border: 1px solid var(--border-active);
+  border-radius: 4px;
+  box-shadow: var(--box-shadow);
+  color: var(--disabled);
+  text-decoration: none;
+  font-size: 18px;
+  font-family: Chicago_12;
+  cursor: not-allowed;
+}
+
+.btn-default {
+  /* Default button has extra border for emphasis */
+  outline: 2px solid var(--border-active);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.btn-default:active {
+  background: var(--sys-color-black);
+  color: var(--sys-color-white);
+  border-radius: 4px;
+}
+
+/* ============================================
+   FORM CONTROLS
+   ============================================ */
+
+/* Text Inputs */
+input  {
+  border: 1px solid var(--border-active);
+  background-color: var(--sys-color-white);
+  font-family: Chicago_12;
+  font-size: 18px;
+  padding: 3px 5px;
+}
+
+input:focus  {
+  outline: none;
+}
+
+input[type="text"]:focus-visible,
+input[type="email"]:focus-visible,
+input[type="password"]:focus-visible,
+input[type="number"]:focus-visible,
+input[type="date"]:focus-visible,
+input[type="time"]:focus-visible,
+input[type="datetime"]:focus-visible,
+input[type="datetime-local"]:focus-visible,
+input[type="month"]:focus-visible,
+input[type="week"]:focus-visible,
+input[type="search"]:focus-visible,
+input[type="tel"]:focus-visible,
+input[type="color"]:focus-visible,
+textarea:focus {
+  outline: 2px solid var(--border-active);
+  outline-offset: -2px;
+}
+
+input[type="radio"] + label::before {
+  border-image: svg-load("./icon/radio-border.svg");
+  width: 20px;
+  height: 20px;
+}
+
+input[type="checkbox"] + label::before {
+  border: 1.5px solid var(--secondary);
+  width: 20px;
+  height: 20px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 0;
+  background: 0;
+  position: fixed;
+  opacity: 0;
+  border: none;
+}
+
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+  line-height: 13px;
+  padding-left: 5px;
+}
+
+input[type="radio"] + label {
+  position: relative;
+  margin-left: var(--radio-total-width);
+}
+
+input[type="radio"] + label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(-1 * (var(--radio-total-width-precalc)));
+  display: inline-block;
+  width: var(--radio-width);
+  height: var(--radio-width);
+  margin-right: var(--radio-label-spacing);
+  background: svg-load("./icon/radio-border.svg");
+}
+
+input[type="radio"]:focus-visible + label::before,
+input[type="radio"]:hover + label::before {
+  background-image: svg-load("./icon/radio-border-focused.svg");
+}
+
+input[type="radio"]:checked + label::after {
+  content: "";
+  display: block;
+  width: var(--radio-dot-width);
+  height: var(--radio-dot-width);
+  top: var(--radio-dot-top);
+  left: var(--radio-dot-left);
+  position: absolute;
+  background: svg-load("./icon/radio-dot.svg");
+}
+
+input[type="checkbox"] + label {
+  position: relative;
+  margin-left: var(--checkbox-total-width);
+}
+
+input[type="checkbox"] + label::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * (var(--checkbox-total-width-precalc)));
+  display: inline-block;
+  width: var(--checkbox-width);
+  height: var(--checkbox-width);
+  background: var(--button-highlight);
+  box-shadow: var(--border-field);
+  margin-right: var(--radio-label-spacing);
+}
+
+input[type="checkbox"]:focus-visible + label::before,
+input[type="checkbox"]:hover + label::before {
+  outline: 1px solid var(--secondary);
+}
+
+input[type="checkbox"]:checked + label::after {
+  content: "";
+  display: block;
+  width: var(--checkmark-width);
+  height: var(--checkmark-width);
+  position: absolute;
+  top: var(--checkmark-top);
+  left: calc(
+    -1 * (var(--checkbox-total-width-precalc)) + var(--checkmark-left)
+  );
+  background: svg-load("./icon/checkmark.svg");
+  background-repeat: no-repeat;
+}
+
+
+input[type="checkbox"][disabled] + label::before {
+  background: var(--surface);
+}
+
+input[type="checkbox"][disabled]:checked + label::after {
+  background: svg-load("./icon/checkmark-disabled.svg");
+}
+
+.field-row {
+  display: flex;
+  align-items: center;
+  font-family: Chicago_12;
+  font-size: 1em;
+}
+
+[class^="field-row"] + [class^="field-row"] {
+  margin-top: var(--grouped-element-spacing);
+}
+
+.field-row > * + * {
+  margin-left: var(--grouped-element-spacing);
+}
+
+.apple {
+  background: svg-load("./icon/apple.svg");
+  height: 22px;
+  width: 18px;
+  background-repeat: no-repeat;
+  border: none;
+  display: inline-block;
+  margin-right: 2px;
+}
+
+form {
+  font-family: "Inconsolata", Menlo, Chicago, Geneva;
+  font-size:14px;
+}
+
+/* select menu */
+select {
+  height: auto;
+  width: 10rem;
+  font-family: Chicago_12;
+  font-size: 18px;
+  background-image: svg-load("./icon/select-button.svg");
+  background-position: top 2px right 2px;
+  background-repeat: no-repeat;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  padding: 3px 32px 3px 8px;
+  border: 1px solid var(--border-active);
+  box-shadow: var(--box-shadow);
+  background-color: var(--sys-color-white);
+}
+
+/* ============================================
+   MENUS
+   ============================================ */
+
+ul[role] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  cursor: pointer;
+  font-family: Chicago_12;
+  font-size: 1em;
+}
+ul[role="menu-bar"] {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border-active);
+  box-shadow: var(--box-shadow);
+}
+ul[role="menu-bar"] > [role="menu-item"] {
+  position: relative;
+  padding: 6px 10px;
+}
+ul[role="menu-bar"] > [role="menu-item"]:focus, ul[role="menu-bar"] > [role="menu-item"]:focus-within, ul[role="menu-bar"] > [role="menu-item"]:hover {
+  background: var(--sys-color-black);
+  color: var(--sys-color-white);
+  outline: none;
+}
+ul[role="menu-bar"] > [role="menu-item"][aria-haspopup="false"] * {
+  color: inherit;
+  background: inherit;
+  text-decoration: none;
+}
+ul[role="menu"] {
+  position: relative;
+  min-width: 200px;
+  background: var(--sys-color-white);
+  color: var(--text-color);
+  border: 1px solid var(--border-active);
+  box-shadow: var(--box-shadow);
+}
+ul[role="menu"]::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  left: 28px;
+  width: 2px;
+  box-shadow: inset 1px 0 rgba(0, 0, 0, 0.15), inset -1px 0 var(--sys-color-white);
+}
+[role="menu-item"] ul[role="menu"] {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 99;
+}
+ul[role="menu"] > [role="menu-item"] > a, ul[role="menu"] > [role="menu-item"] > button, ul[role="menu"] > [role="menu-item"][aria-haspopup="true"] {
+  all: unset;
+  position: relative;
+  padding: 5px 20px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+}
+ul[role="menu"] > [role="menu-item"] > a:hover, ul[role="menu"] > [role="menu-item"] > button:hover, ul[role="menu"] > [role="menu-item"][aria-haspopup="true"]:hover, ul[role="menu"] > [role="menu-item"] > a:focus, ul[role="menu"] > [role="menu-item"] > button:focus, ul[role="menu"] > [role="menu-item"][aria-haspopup="true"]:focus {
+  background: var(--sys-color-black);
+  color: var(--sys-color-white);
+}
+ul [role="menu-item"] {
+  position: relative;
+}
+ul [role="menu-item"]:focus > [role="menu"], ul [role="menu-item"]:focus-within > [role="menu"] {
+  display: block;
+}
+ul [role="menu-item"].divider::after {
+  content: "";
+  pointer-events: none;
+  display: block;
+  padding: 0;
+  border-top: 1px solid var(--border-active);
+}
+
+/* styles specific to demo page */
+.menu-items > li {
+  margin-bottom: 1rem;
+}
