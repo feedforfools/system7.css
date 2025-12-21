@@ -21,6 +21,13 @@
   --drop-shadow: var(--color-black);
 
   /* ═══════════════════════════════════════════════
+     DIALOG FRAME
+     ═══════════════════════════════════════════════ */
+  --dialog-frame-highlight: var(--color-purple-100);
+  --dialog-frame-shadow: var(--color-purple-300);
+  --dialog-frame-border: var(--color-gray-300);
+
+  /* ═══════════════════════════════════════════════
      DESKTOP PATTERN
      ═══════════════════════════════════════════════ */
   --desktop-pattern-dark: var(--color-gray-500);

@@ -1,6 +1,6 @@
 /**
  * Window Component
- * Includes: .window, .window-pane, .separator, .details-bar, dialogs
+ * Includes: .window, .window-pane, .separator, .details-bar
  */
 
 /* ═══════════════════════════════════════════════
@@ -98,44 +98,4 @@
   border-bottom: 2px solid var(--secondary);
   font-size: 28px;
   font-weight: normal;
-}
-
-/* ═══════════════════════════════════════════════
-   DIALOGS
-   ═══════════════════════════════════════════════ */
-
-.standard-dialog {
-  padding: 10px;
-  background: var(--surface);
-  border: var(--window-border-active);
-}
-
-.modal-dialog,
-.alert-box {
-  width: auto;
-  padding: 13px;
-  background: var(--surface);
-  border: var(--window-border-active);
-}
-
-.modal-contents,
-.alert-contents {
-  padding: 10px;
-}
-
-.modeless-dialog {
-  height: 100%;
-  padding: 1.5rem 0.5rem 0.5rem 0.5rem;
-  font-size: 18px;
-  letter-spacing: -0.025em;
-}
-
-.inner-border {
-  border: 4px solid var(--border-active);
-  padding: 4px;
-}
-
-.outer-border {
-  border: 2px solid var(--border-active);
-  padding: 4px;
 }

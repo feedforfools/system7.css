@@ -1,0 +1,38 @@
+/**
+ * Window Component
+ * Includes: .standard-dialog, .modal-dialog
+ */
+
+/* ═══════════════════════════════════════════════
+   DIALOGS
+   ═══════════════════════════════════════════════ */
+
+.standard-dialog {
+  padding: 10px;
+  background: var(--surface);
+  border: var(--window-border-active);
+}
+
+.modal-dialog {
+  width: auto;
+  background: var(--surface);
+  border: var(--dialog-frame-width) solid var(--border-active);
+  box-shadow:
+    /* Outer inset: light top-left, dark bottom-right */
+    inset calc(-1 * var(--dialog-frame-width)) calc(-1 * var(--dialog-frame-width)) 0 0 var(--dialog-frame-shadow),
+    inset var(--dialog-frame-width) var(--dialog-frame-width) 0 0 var(--dialog-frame-highlight),
+    /* Grey border */
+    inset calc(2 * var(--dialog-frame-width)) calc(2 * var(--dialog-frame-width)) 0 0 var(--dialog-frame-border),
+    inset calc(-2 * var(--dialog-frame-width)) calc(-2 * var(--dialog-frame-width)) 0 0 var(--dialog-frame-border),
+    /* Inner inset: reversed - dark top-left, light bottom-right */
+    inset calc(3 * var(--dialog-frame-width)) calc(3 * var(--dialog-frame-width)) 0 0 var(--dialog-frame-shadow),
+    inset calc(-3 * var(--dialog-frame-width)) calc(-3 * var(--dialog-frame-width)) 0 0 var(--dialog-frame-highlight),
+    /* Inner black border */
+    inset calc(4 * var(--dialog-frame-width)) calc(4 * var(--dialog-frame-width)) 0 0 var(--border-active),
+    inset calc(-4 * var(--dialog-frame-width)) calc(-4 * var(--dialog-frame-width)) 0 0 var(--border-active);
+}
+
+.modal-dialog-content {
+  padding: 13px;
+  margin: calc(4 * var(--dialog-frame-width)); /* Account for the frame width */
+}

@@ -7,12 +7,11 @@
 .btn-default {
   min-height: 23px;
   min-width: 59px;
-  padding: 0 12px;
+  padding: 3px 12px;
   text-align: center;
   background: var(--color-white);
-  border: 1px solid var(--border-active);
-  border-radius: 4px;
-  box-shadow: var(--box-shadow);
+  border: 2px solid var(--border-active);
+  border-radius: 6px;
   color: var(--text-color);
   text-decoration: none;
   font-size: 18px;
@@ -22,26 +21,26 @@
 
 .btn:active {
   background: var(--color-black);
-  border-radius: 4px;
-  border: 1px solid var(--border-active);
-  box-shadow: var(--box-shadow);
+  border-radius: 6px;
+  border: 2px solid var(--border-active);
   color: var(--color-white);
   font-family: Chicago_12;
 }
 
 .btn:disabled {
   color: var(--text-disabled);
+  border-color: var(--border-inactive);
   cursor: not-allowed;
 }
 
 .btn-default {
-  outline: 2px solid var(--border-active);
+  outline: 4px solid var(--border-active);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .btn-default:active {
   background: var(--color-black);
   color: var(--color-white);
-  border-radius: 4px;
+  border-radius: 6px;
 }
