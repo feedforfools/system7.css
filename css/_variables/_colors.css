@@ -1,0 +1,30 @@
+/**
+ * Base Color Palette
+ * These are the fundamental colors used throughout System 7.
+ * Do NOT use these directly in components - use semantic tokens instead.
+ */
+
+:root {
+  /* ═══════════════════════════════════════════════
+     CORE PALETTE
+     ═══════════════════════════════════════════════ */
+  
+  /* Absolutes */
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  
+  /* Grayscale - Light to Dark */
+  --color-gray-100: #f1f1f1;   /* Lightest - header background */
+  --color-gray-200: #e7e7e7;   /* Scrollbar track */
+  --color-gray-300: #c8c8c8;   /* Desktop pattern light */
+  --color-gray-400: #c0c0c0;   /* Button inner, scrollbar thumb */
+  --color-gray-500: #a0a0a0;   /* Desktop pattern dark, disabled */
+  --color-gray-600: #949494;   /* Title bar stripe */
+  --color-gray-700: #808080;   /* Inactive border */
+  
+  /* Purple Accent (Title bar glow & buttons) */
+  --color-purple-100: #d6d5fd; /* Light glow */
+  --color-purple-200: #abaad3; /* Dark glow */
+  --color-purple-300: #8787b3; /* Stripe dark */
+  --color-purple-400: #555487; /* Deep purple - inset shadows */
+}

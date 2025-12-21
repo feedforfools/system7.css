@@ -1,0 +1,292 @@
+/**
+ * Title Bar Component
+ * Includes: .title-bar, .inactive-title-bar, close/resize buttons
+ */
+
+/* ═══════════════════════════════════════════════
+   ACTIVE TITLE BAR
+   ═══════════════════════════════════════════════ */
+
+.title-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: var(--title-bar-height);
+  margin: 0;
+  padding: 1px 7px;
+  
+  /* Local stripe position calculations */
+  --s: var(--stripe-thickness);
+  --g: var(--stripe-gap);
+  --p0: var(--stripe-start);
+  --p1: calc(var(--p0) + var(--s));
+  --p2: calc(var(--p1) + var(--g));
+  --p3: calc(var(--p2) + var(--s));
+  --p4: calc(var(--p3) + var(--g));
+  --p5: calc(var(--p4) + var(--s));
+  --p6: calc(var(--p5) + var(--g));
+  --p7: calc(var(--p6) + var(--s));
+  --p8: calc(var(--p7) + var(--g));
+  --p9: calc(var(--p8) + var(--s));
+  --p10: calc(var(--p9) + var(--g));
+  --p11: calc(var(--p10) + var(--s));
+  
+  --glow-top-start: 0%;
+  --glow-top-end: var(--horizontal-glow-width);
+  --glow-bottom-start: calc(100% - var(--horizontal-glow-width));
+  --glow-bottom-end: 100%;
+  
+  background: 
+    /* Right vertical stripe */
+    linear-gradient(
+      to left,
+      var(--title-bar-glow-dark) 0,
+      var(--title-bar-glow-dark) var(--vertical-stripe-width),
+      transparent var(--vertical-stripe-width)
+    ),
+    /* Left vertical stripe */
+    linear-gradient(
+      to right,
+      var(--title-bar-glow-light) 0,
+      var(--title-bar-glow-light) var(--vertical-stripe-width),
+      transparent var(--vertical-stripe-width)
+    ),
+    /* Horizontal stripes with glow */
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent var(--glow-top-start),
+      var(--title-bar-glow-light) var(--glow-top-start),
+      var(--title-bar-glow-light) var(--glow-top-end),
+      transparent var(--glow-top-end),
+      transparent var(--p0),
+      var(--title-bar-stripe) var(--p0),
+      var(--title-bar-stripe) var(--p1),
+      transparent var(--p1),
+      transparent var(--p2),
+      var(--title-bar-stripe) var(--p2),
+      var(--title-bar-stripe) var(--p3),
+      transparent var(--p3),
+      transparent var(--p4),
+      var(--title-bar-stripe) var(--p4),
+      var(--title-bar-stripe) var(--p5),
+      transparent var(--p5),
+      transparent var(--p6),
+      var(--title-bar-stripe) var(--p6),
+      var(--title-bar-stripe) var(--p7),
+      transparent var(--p7),
+      transparent var(--p8),
+      var(--title-bar-stripe) var(--p8),
+      var(--title-bar-stripe) var(--p9),
+      transparent var(--p9),
+      transparent var(--p10),
+      var(--title-bar-stripe) var(--p10),
+      var(--title-bar-stripe) var(--p11),
+      transparent var(--p11),
+      transparent var(--glow-bottom-start),
+      var(--title-bar-glow-dark) var(--glow-bottom-start),
+      var(--title-bar-glow-dark) var(--glow-bottom-end),
+      transparent var(--glow-bottom-end),
+      transparent 100%
+    );
+  background-color: var(--surface-header);
+  background-repeat: no-repeat;
+  border-bottom: 2px solid var(--border-active);
+}
+
+.title-bar .title {
+  padding: 0 10px 0 14px;
+  margin: 0 auto;
+  font-size: 28px;
+  font-weight: normal;
+  line-height: 28px;
+  text-align: center;
+  background: var(--surface-header);
+  cursor: default;
+  font-family: Chicago_12, Chicago, sans-serif;
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════
+   INACTIVE TITLE BAR
+   ═══════════════════════════════════════════════ */
+
+.inactive-title-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin: 0;
+  padding: 1px 7px;
+  background: var(--surface);
+  border-bottom: 2px solid var(--border-inactive);
+}
+
+.inactive-title-bar .title {
+  padding: 0 10px 0 14px;
+  margin: 0 auto;
+  font-size: 28px;
+  font-weight: normal;
+  line-height: 28px;
+  text-align: center;
+  background: var(--surface);
+  cursor: default;
+  font-family: Chicago_12, Chicago, sans-serif;
+  color: var(--tertiary);
+}
+
+/* ═══════════════════════════════════════════════
+   TITLE BAR BUTTONS (Active)
+   ═══════════════════════════════════════════════ */
+
+.title-bar button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--button-hole-size);
+  width: var(--button-hole-size);
+  margin: 5px;
+  padding: 0;
+  outline: none;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: var(--button-hole-bg);
+  box-shadow: 
+    inset 2px 2px 0 var(--button-hole-inset),
+    0 0 0 2px var(--surface-header);
+}
+
+.title-bar button::before {
+  content: "";
+  display: block;
+  width: var(--button-item-size);
+  height: var(--button-item-size);
+  margin-top: 1px;
+  margin-left: 1px;
+  background: var(--button-inner-bg);
+  box-shadow: inset -2px -2px 0 var(--button-inner-shadow);
+}
+
+/* Active state (clicked) */
+.title-bar button:active {
+  background: var(--button-hole-bg-active);
+  background-image: 
+    linear-gradient(to bottom, var(--button-active-border) 0, var(--button-active-border) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
+    linear-gradient(to left, var(--button-active-border) 0, var(--button-active-border) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
+    linear-gradient(to top, var(--button-active-border) 0, var(--button-active-border) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
+    linear-gradient(to right, var(--button-active-border) 0, var(--button-active-border) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
+    linear-gradient(var(--button-active-border), var(--button-active-border)),
+    linear-gradient(var(--button-active-border), var(--button-active-border)),
+    linear-gradient(var(--button-active-border), var(--button-active-border)),
+    linear-gradient(var(--button-active-border), var(--button-active-border)),
+    linear-gradient(var(--button-active-border), var(--button-active-border)),
+    linear-gradient(var(--button-active-border), var(--button-active-border)),
+    linear-gradient(var(--button-active-border), var(--button-active-border)),
+    linear-gradient(var(--button-active-border), var(--button-active-border));
+  background-size: 
+    var(--button-active-border-thickness) calc(var(--button-active-border-segment-length) + 1px), 
+    calc(var(--button-active-border-segment-length) + 1px) var(--button-active-border-thickness), 
+    var(--button-active-border-thickness) calc(var(--button-active-border-segment-length) + 1px), 
+    calc(var(--button-active-border-segment-length) + 1px) var(--button-active-border-thickness), 
+    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
+    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
+    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
+    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
+    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size), 
+    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size), 
+    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size), 
+    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size);
+  background-position: 
+    center top, right center, center bottom, left center,
+    calc(50% + var(--button-active-corner-inner-offset)) calc(50% - var(--button-active-corner-inner-offset)), 
+    calc(50% + var(--button-active-corner-inner-offset)) calc(50% + var(--button-active-corner-inner-offset)), 
+    calc(50% - var(--button-active-corner-inner-offset)) calc(50% + var(--button-active-corner-inner-offset)), 
+    calc(50% - var(--button-active-corner-inner-offset)) calc(50% - var(--button-active-corner-inner-offset)), 
+    calc(50% + var(--button-active-corner-outer-offset)) calc(50% - var(--button-active-corner-outer-offset)), 
+    calc(50% + var(--button-active-corner-outer-offset)) calc(50% + var(--button-active-corner-outer-offset)), 
+    calc(50% - var(--button-active-corner-outer-offset)) calc(50% + var(--button-active-corner-outer-offset)), 
+    calc(50% - var(--button-active-corner-outer-offset)) calc(50% - var(--button-active-corner-outer-offset));
+  background-repeat: no-repeat;
+  box-shadow: 
+    inset var(--button-active-border-thickness) var(--button-active-border-thickness) 0 var(--button-active-border),
+    inset calc(-1 * var(--button-active-border-thickness)) calc(-1 * var(--button-active-border-thickness)) 0 var(--button-active-border),
+    0 0 0 var(--button-active-border-thickness) var(--surface-header);
+}
+
+.title-bar button:active::before,
+.title-bar button.resize:active::after {
+  visibility: hidden;
+}
+
+.title-bar button span {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Close button (left) */
+.title-bar button.close {
+  margin-left: 7px;
+}
+
+/* Resize/zoom button (right) */
+.title-bar button.resize {
+  margin-right: 7px;
+}
+
+.title-bar button.resize::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: calc(var(--button-item-size) / 1.5);
+  height: calc(var(--button-item-size) / 1.5);
+  margin-top: -3px;
+  margin-left: -3px;
+  background: var(--button-inner-bg);
+  box-shadow: inset -2px -2px 0 var(--button-inner-shadow);
+}
+
+.title-bar button.hidden {
+  visibility: hidden;
+}
+
+/* ═══════════════════════════════════════════════
+   INACTIVE TITLE BAR BUTTONS
+   ═══════════════════════════════════════════════ */
+
+.inactive-title-bar button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border-inactive);
+  background: var(--color-white);
+  cursor: default;
+  flex-shrink: 0;
+}
+
+.inactive-title-bar button::before {
+  content: "";
+  display: block;
+  width: 7px;
+  height: 7px;
+  background: var(--color-white);
+  border: 1px solid var(--border-inactive);
+  box-shadow: none;
+}
+
+.inactive-title-bar button.close {
+  margin-right: 6px;
+}
+
+.inactive-title-bar button.resize {
+  margin-left: 6px;
+}

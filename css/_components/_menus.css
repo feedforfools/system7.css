@@ -1,0 +1,131 @@
+/**
+ * Menu Components
+ * Includes: menu bar, dropdown menus, menu items
+ */
+
+/* ═══════════════════════════════════════════════
+   MENU BASE
+   ═══════════════════════════════════════════════ */
+
+ul[role] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  cursor: pointer;
+  font-family: Chicago_12;
+  font-size: 1em;
+}
+
+/* ═══════════════════════════════════════════════
+   MENU BAR
+   ═══════════════════════════════════════════════ */
+
+ul[role="menu-bar"] {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border-active);
+  box-shadow: var(--box-shadow);
+}
+
+ul[role="menu-bar"] > [role="menu-item"] {
+  position: relative;
+  padding: 6px 10px;
+}
+
+ul[role="menu-bar"] > [role="menu-item"]:focus,
+ul[role="menu-bar"] > [role="menu-item"]:focus-within,
+ul[role="menu-bar"] > [role="menu-item"]:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+  outline: none;
+}
+
+ul[role="menu-bar"] > [role="menu-item"][aria-haspopup="false"] * {
+  color: inherit;
+  background: inherit;
+  text-decoration: none;
+}
+
+/* ═══════════════════════════════════════════════
+   DROPDOWN MENU
+   ═══════════════════════════════════════════════ */
+
+ul[role="menu"] {
+  position: relative;
+  min-width: 200px;
+  background: var(--color-white);
+  color: var(--text-color);
+  border: 1px solid var(--border-active);
+  box-shadow: var(--box-shadow);
+}
+
+ul[role="menu"]::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  left: 28px;
+  width: 2px;
+  box-shadow: inset 1px 0 rgba(0, 0, 0, 0.15), inset -1px 0 var(--color-white);
+}
+
+[role="menu-item"] ul[role="menu"] {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 99;
+}
+
+/* ═══════════════════════════════════════════════
+   MENU ITEMS
+   ═══════════════════════════════════════════════ */
+
+ul[role="menu"] > [role="menu-item"] > a,
+ul[role="menu"] > [role="menu-item"] > button,
+ul[role="menu"] > [role="menu-item"][aria-haspopup="true"] {
+  all: unset;
+  position: relative;
+  padding: 5px 20px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+ul[role="menu"] > [role="menu-item"] > a:hover,
+ul[role="menu"] > [role="menu-item"] > button:hover,
+ul[role="menu"] > [role="menu-item"][aria-haspopup="true"]:hover,
+ul[role="menu"] > [role="menu-item"] > a:focus,
+ul[role="menu"] > [role="menu-item"] > button:focus,
+ul[role="menu"] > [role="menu-item"][aria-haspopup="true"]:focus {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+ul [role="menu-item"] {
+  position: relative;
+}
+
+ul [role="menu-item"]:focus > [role="menu"],
+ul [role="menu-item"]:focus-within > [role="menu"] {
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════
+   MENU DIVIDER
+   ═══════════════════════════════════════════════ */
+
+ul [role="menu-item"].divider::after {
+  content: "";
+  pointer-events: none;
+  display: block;
+  padding: 0;
+  border-top: 1px solid var(--border-active);
+}
+
+/* ═══════════════════════════════════════════════
+   DEMO PAGE STYLES
+   ═══════════════════════════════════════════════ */
+
+.menu-items > li {
+  margin-bottom: 1rem;
+}

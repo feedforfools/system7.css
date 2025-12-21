@@ -1,0 +1,141 @@
+/**
+ * Window Component
+ * Includes: .window, .window-pane, .separator, .details-bar, dialogs
+ */
+
+/* ═══════════════════════════════════════════════
+   WINDOW FRAME
+   ═══════════════════════════════════════════════ */
+
+.window {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 1rem;
+  min-width: 320px;
+  min-height: 215px;
+  overflow: hidden;
+  background: var(--surface);
+  border: var(--window-border-active);
+  box-shadow: var(--window-shadow-active);
+  font-family: Chicago_12, Geneva_9, Chicago, Geneva, sans-serif;
+}
+
+.window.inactive {
+  border: var(--window-border-inactive);
+  box-shadow: var(--window-shadow-inactive);
+}
+
+/* ═══════════════════════════════════════════════
+   WINDOW PANE (Content Area)
+   ═══════════════════════════════════════════════ */
+
+.window-pane {
+  position: relative;
+  overflow: scroll;
+  flex: 1;
+  padding: 1rem 2rem;
+  font-size: 27px;
+  letter-spacing: -0.025em;
+  background: var(--color-white);
+  font-family: Geneva_9, Geneva, sans-serif;
+}
+
+/* Inactive window pane borders (simulate scrollbar placeholder) */
+.window.inactive .window-pane::before {
+  content: "";
+  position: absolute;
+  bottom: calc(var(--inactive-scrollbar-size) - var(--border-width));
+  left: 0;
+  right: 0;
+  height: var(--border-width);
+  background: var(--border-active);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.window.inactive .window-pane::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: calc(var(--inactive-scrollbar-size) - var(--border-width));
+  bottom: 0;
+  width: var(--border-width);
+  background: var(--border-active);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════
+   SEPARATORS & DETAIL BARS
+   ═══════════════════════════════════════════════ */
+
+.separator {
+  flex: none;
+  display: block;
+  height: var(--separator-height);
+  border-bottom: 2px solid var(--secondary);
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.separator::before,
+.separator::after {
+  content: none;
+}
+
+.details-bar {
+  font-family: Geneva_9, Geneva, sans-serif;
+  flex: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: var(--details-bar-height);
+  justify-content: space-between;
+  padding: 0.2rem 0.8rem;
+  border-bottom: 2px solid var(--secondary);
+  font-size: 28px;
+  font-weight: normal;
+}
+
+/* ═══════════════════════════════════════════════
+   DIALOGS
+   ═══════════════════════════════════════════════ */
+
+.standard-dialog {
+  padding: 10px;
+  background: var(--surface);
+  border: var(--window-border-active);
+}
+
+.modal-dialog,
+.alert-box {
+  width: auto;
+  padding: 13px;
+  background: var(--surface);
+  border: var(--window-border-active);
+}
+
+.modal-contents,
+.alert-contents {
+  padding: 10px;
+}
+
+.modeless-dialog {
+  height: 100%;
+  padding: 1.5rem 0.5rem 0.5rem 0.5rem;
+  font-size: 18px;
+  letter-spacing: -0.025em;
+}
+
+.inner-border {
+  border: 4px solid var(--border-active);
+  padding: 4px;
+}
+
+.outer-border {
+  border: 2px solid var(--border-active);
+  padding: 4px;
+}

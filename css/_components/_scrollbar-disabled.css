@@ -1,0 +1,292 @@
+/**
+ * Disabled Scrollbar States
+ * For windows with .no-scroll, .no-scroll-v, or .no-scroll-h classes
+ * 
+ * Appearance:
+ * - Arrow buttons: outline only (no fill, no bevel)
+ * - Track: solid gray background (no checkered pattern)
+ * - No thumb visible
+ */
+
+/* ═══════════════════════════════════════════════
+   DISABLED TRACK
+   ═══════════════════════════════════════════════ */
+
+.window.no-scroll .window-pane::-webkit-scrollbar-track,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-track:vertical,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-track:horizontal {
+  background-color: var(--surface-header);
+  background-image: none;
+}
+
+/* ═══════════════════════════════════════════════
+   DISABLED BUTTON SIZE
+   ═══════════════════════════════════════════════ */
+
+.window.no-scroll,
+.window.no-scroll-v,
+.window.no-scroll-h {
+  --scrollbar-button-size-disabled: var(--scrollbar-button-size);
+}
+
+.window.no-scroll .window-pane::-webkit-scrollbar-button:vertical:start,
+.window.no-scroll .window-pane::-webkit-scrollbar-button:vertical:end,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-button:vertical:start,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-button:vertical:end,
+.window.no-scroll .window-pane::-webkit-scrollbar-button:horizontal:start,
+.window.no-scroll .window-pane::-webkit-scrollbar-button:horizontal:end,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-button:horizontal:start,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-button:horizontal:end {
+  width: var(--scrollbar-button-size-disabled);
+  height: var(--scrollbar-button-size-disabled);
+}
+
+/* ═══════════════════════════════════════════════
+   DISABLED VERTICAL BUTTONS BASE
+   ═══════════════════════════════════════════════ */
+
+.window.no-scroll .window-pane::-webkit-scrollbar-button:vertical:start,
+.window.no-scroll .window-pane::-webkit-scrollbar-button:vertical:end,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-button:vertical:start,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-button:vertical:end {
+  background: var(--surface-header);
+  border-left: 2px solid var(--border-active);
+  box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════════
+   DISABLED VERTICAL UP ARROW
+   ═══════════════════════════════════════════════ */
+
+.window.no-scroll .window-pane::-webkit-scrollbar-button:vertical:start:decrement,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-button:vertical:start:decrement {
+  background-color: var(--surface-header);
+  border-bottom: none;
+  background-image:
+    /* Row 0: Tip */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Row 1: left and right border */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Row 2 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Row 3 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Row 4 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Row 5: base */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Shaft left and right borders */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Shaft bottom border */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe));
+  
+  background-size:
+    2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    8px 2px, 8px 2px,
+    2px 6px, 2px 6px,
+    10px 2px;
+
+  background-position:
+    12px 3px,
+    10px 5px, 14px 5px,
+    8px 7px, 16px 7px,
+    6px 9px, 18px 9px,
+    4px 11px, 20px 11px,
+    2px 13px, 16px 13px,
+    8px 15px, 16px 15px,
+    8px 21px;
+  
+  background-repeat: no-repeat;
+  box-shadow: inset 0 -2px 0 0 var(--border-inactive);
+}
+
+/* ═══════════════════════════════════════════════
+   DISABLED VERTICAL DOWN ARROW
+   ═══════════════════════════════════════════════ */
+
+.window.no-scroll .window-pane::-webkit-scrollbar-button:vertical:end:increment,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-button:vertical:end:increment {
+  background-color: var(--surface-header);
+  border-top: none;
+  background-image:
+    /* Shaft top border */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Shaft left and right borders */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Row 0: base */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Row 1 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Row 2 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Row 3 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Row 4 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Tip */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe));
+  
+  background-size:
+    10px 2px,
+    2px 6px, 2px 6px,
+    8px 2px, 8px 2px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px;
+
+  background-position:
+    8px 5px,
+    8px 7px, 16px 7px,
+    2px 13px, 16px 13px,
+    4px 15px, 20px 15px,
+    6px 17px, 18px 17px,
+    8px 19px, 16px 19px,
+    10px 21px, 14px 21px,
+    12px 23px;
+  
+  background-repeat: no-repeat;
+  box-shadow: inset 0 2px 0 0 var(--border-inactive);
+}
+
+/* ═══════════════════════════════════════════════
+   DISABLED HORIZONTAL BUTTONS BASE
+   ═══════════════════════════════════════════════ */
+
+.window.no-scroll .window-pane::-webkit-scrollbar-button:horizontal:start,
+.window.no-scroll .window-pane::-webkit-scrollbar-button:horizontal:end,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-button:horizontal:start,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-button:horizontal:end {
+  background: var(--surface-header);
+  border-top: 2px solid var(--border-active);
+  box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════════
+   DISABLED HORIZONTAL LEFT ARROW
+   ═══════════════════════════════════════════════ */
+
+.window.no-scroll .window-pane::-webkit-scrollbar-button:horizontal:start:decrement,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-button:horizontal:start:decrement {
+  background-color: var(--surface-header);
+  border-right: none;
+  background-image:
+    /* Tip */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Column 1: top and bottom border */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Column 2 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Column 3 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Column 4 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Column 5: base */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Shaft top and bottom borders */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Shaft right border */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe));
+  
+  background-size:
+    2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    2px 8px, 2px 8px,
+    6px 2px, 6px 2px,
+    2px 10px;
+
+  background-position:
+    3px 12px,
+    5px 10px, 5px 14px,
+    7px 8px, 7px 16px,
+    9px 6px, 9px 18px,
+    11px 4px, 11px 20px,
+    13px 2px, 13px 16px,
+    15px 8px, 15px 16px,
+    21px 8px;
+  
+  background-repeat: no-repeat;
+  box-shadow: inset -2px 0 0 0 var(--border-inactive);
+}
+
+/* ═══════════════════════════════════════════════
+   DISABLED HORIZONTAL RIGHT ARROW
+   ═══════════════════════════════════════════════ */
+
+.window.no-scroll .window-pane::-webkit-scrollbar-button:horizontal:end:increment,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-button:horizontal:end:increment {
+  background-color: var(--surface-header);
+  border-left: none;
+  background-image:
+    /* Shaft left border */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Shaft top and bottom borders */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Column 0: base */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Column 1 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Column 2 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Column 3 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Column 4 */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe)),
+    /* Tip */
+    linear-gradient(var(--title-bar-stripe), var(--title-bar-stripe));
+  
+  background-size:
+    2px 10px,
+    6px 2px, 6px 2px,
+    2px 8px, 2px 8px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px, 2px 2px,
+    2px 2px;
+
+  background-position:
+    5px 8px,
+    7px 8px, 7px 16px,
+    13px 2px, 13px 16px,
+    15px 4px, 15px 20px,
+    17px 6px, 17px 18px,
+    19px 8px, 19px 16px,
+    21px 10px, 21px 14px,
+    23px 12px;
+  
+  background-repeat: no-repeat;
+  box-shadow: inset 2px 0 0 0 var(--border-inactive);
+}

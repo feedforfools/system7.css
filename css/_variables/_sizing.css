@@ -1,0 +1,61 @@
+/**
+ * Sizing, Spacing, and Dimension Tokens
+ */
+
+:root {
+  /* ═══════════════════════════════════════════════
+     BORDERS
+     ═══════════════════════════════════════════════ */
+  --border-width: 2px;
+  --border-width-thin: 1px;
+
+  /* ═══════════════════════════════════════════════
+     WINDOW DIMENSIONS
+     ═══════════════════════════════════════════════ */
+  --title-bar-height: 30px;
+  --details-bar-height: 26px;
+  --separator-height: 2px;
+
+  /* ═══════════════════════════════════════════════
+     TITLE BAR STRIPES
+     ═══════════════════════════════════════════════ */
+  --stripe-count: 6;
+  --stripe-margin: 12%;
+  --stripe-bands: 11;  /* stripe-count + (stripe-count - 1) gaps */
+  --horizontal-glow-width: 2px;
+  --vertical-stripe-width: 2px;
+
+  /* ═══════════════════════════════════════════════
+     TITLE BAR BUTTONS
+     ═══════════════════════════════════════════════ */
+  --button-hole-size: 20px;
+  --button-item-size: 14px;
+  --button-active-border-thickness: 2px;
+  --button-active-border-segment-length: 7px;
+  --button-active-corner-inner-size: 2px;
+  --button-active-corner-outer-size: 2px;
+  --button-active-corner-inner-offset: 4px;
+  --button-active-corner-outer-offset: 6px;
+
+  /* ═══════════════════════════════════════════════
+     SCROLLBAR
+     ═══════════════════════════════════════════════ */
+  --scrollbar-button-size: 28px;
+  --scrollbar-thumb-stripe-h-margin: 7px;
+  --scrollbar-thumb-stripe-v-margin: 10px;
+  --scrollbar-thumb-stripe-height: 2px;
+  --inactive-scrollbar-size: 28px;
+
+  /* ═══════════════════════════════════════════════
+     SPACING
+     ═══════════════════════════════════════════════ */
+  --element-spacing: 8px;
+  --grouped-element-spacing: 6px;
+
+  /* ═══════════════════════════════════════════════
+     FORM CONTROLS
+     ═══════════════════════════════════════════════ */
+  --radio-width: 12px;
+  --checkbox-width: 13px;
+  --radio-label-spacing: 6px;
+}

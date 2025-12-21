@@ -1,0 +1,67 @@
+/**
+ * Semantic Color Tokens
+ * These map the base palette to meaningful component names.
+ * USE THESE in components, not the base colors.
+ */
+
+:root {
+  /* ═══════════════════════════════════════════════
+     SURFACE & TEXT
+     ═══════════════════════════════════════════════ */
+  --surface: var(--color-white);
+  --surface-header: var(--color-gray-100);
+  --text-color: var(--color-black);
+  --text-disabled: var(--color-gray-500);
+
+  /* ═══════════════════════════════════════════════
+     BORDERS & SHADOWS
+     ═══════════════════════════════════════════════ */
+  --border-active: var(--color-black);
+  --border-inactive: var(--color-gray-700);
+  --drop-shadow: var(--color-black);
+
+  /* ═══════════════════════════════════════════════
+     DESKTOP PATTERN
+     ═══════════════════════════════════════════════ */
+  --desktop-pattern-dark: var(--color-gray-500);
+  --desktop-pattern-light: var(--color-gray-300);
+
+  /* ═══════════════════════════════════════════════
+     TITLE BAR
+     ═══════════════════════════════════════════════ */
+  --title-bar-stripe: var(--color-gray-600);
+  --title-bar-glow-light: var(--color-purple-100);
+  --title-bar-glow-dark: var(--color-purple-200);
+
+  /* ═══════════════════════════════════════════════
+     TITLE BAR BUTTONS
+     ═══════════════════════════════════════════════ */
+  --button-hole-bg: var(--color-purple-100);
+  --button-hole-bg-active: var(--color-purple-200);
+  --button-hole-inset: var(--color-purple-400);
+  --button-inner-bg: var(--color-gray-400);
+  --button-inner-shadow: var(--color-purple-400);
+  --button-active-border: var(--color-black);
+
+  /* ═══════════════════════════════════════════════
+     SCROLLBAR
+     ═══════════════════════════════════════════════ */
+  --scrollbar-track-bg: var(--color-gray-200);
+  --scrollbar-thumb-bg: var(--color-gray-400);
+  --scrollbar-thumb-border-purple: var(--color-purple-400);
+  --scrollbar-thumb-border-gray: var(--color-gray-700);
+  --scrollbar-thumb-stripe-first: var(--color-purple-200);
+  --scrollbar-thumb-stripe: var(--color-purple-100);
+  --scrollbar-thumb-stripe-dark: var(--color-purple-300);
+  --scrollbar-arrow-color: var(--border-active);
+  --scrollbar-arrow-bg: var(--color-gray-200);
+  --scrollbar-arrow-bg-active: var(--color-gray-500);
+
+  /* ═══════════════════════════════════════════════
+     LEGACY COMPATIBILITY
+     ═══════════════════════════════════════════════ */
+  --primary: var(--surface);
+  --secondary: var(--color-black);
+  --tertiary: var(--color-gray-500);
+  --disabled: var(--color-gray-500);
+}
