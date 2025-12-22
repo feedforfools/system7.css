@@ -60,7 +60,11 @@
   /* ═══════════════════════════════════════════════
      FORM CONTROLS
      ═══════════════════════════════════════════════ */
-  --radio-width: 12px;
+  --radio-width: 20px;
+  --radio-dot-width: calc(0.5 * var(--radio-width));
   --checkbox-width: 20px;
-  --radio-label-spacing: 6px;
+  --checkbox-label-spacing: 12px;
+  --radio-label-spacing: 8px;
+  --select-height: calc(var(--title-bar-height) + 6px);
+  --select-arrow-size: 20px;
 }

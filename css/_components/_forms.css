@@ -10,9 +10,9 @@
 input {
   border: var(--border-width) solid var(--border-active);
   background-color: var(--color-white);
-  font-family: Chicago_12;
-  font-size: 18px;
-  padding: 3px 5px;
+  font-family: Geneva_9, Geneva, sans-serif;
+  font-size: 20px;
+  padding: 3px 6px;
 }
 
 input:focus {
@@ -43,7 +43,7 @@ input::placeholder {
 }
 
 /* ═══════════════════════════════════════════════
-   RADIO BUTTONS
+   RADIO & CHECKBOX COMMON
    ═══════════════════════════════════════════════ */
 
 input[type="radio"],
@@ -63,6 +63,10 @@ input[type="checkbox"] + label {
   padding-left: 5px;
 }
 
+/* ═══════════════════════════════════════════════
+   RADIO BUTTONS
+   ═══════════════════════════════════════════════ */
+
 input[type="radio"] + label {
   position: relative;
   padding-left: calc(var(--radio-width) + var(--radio-label-spacing));
@@ -72,20 +76,19 @@ input[type="radio"] + label::before {
   content: "";
   position: absolute;
   top: 0;
-  left: calc(-1 * (var(--radio-total-width-precalc)));
+  left: 0;
   display: inline-block;
   width: var(--radio-width);
   height: var(--radio-width);
   margin-right: var(--radio-label-spacing);
-  background: url("../../icon/radio-border.svg");
-  border-image: url("../../icon/radio-border.svg");
-  width: 20px;
-  height: 20px;
+  background: url("../../icon/radio-border.svg") no-repeat;
+  background-size: contain;
 }
 
 input[type="radio"]:focus-visible + label::before,
-input[type="radio"]:hover + label::before {
+input[type="radio"]:active + label::before {
   background-image: url("../../icon/radio-border-focused.svg");
+  background-size: contain;
 }
 
 input[type="radio"]:checked + label::after {
@@ -94,9 +97,10 @@ input[type="radio"]:checked + label::after {
   width: var(--radio-dot-width);
   height: var(--radio-dot-width);
   top: var(--radio-dot-top);
-  left: var(--radio-dot-left);
+  left: calc((var(--radio-width) - var(--radio-dot-width)) / 2);
   position: absolute;
-  background: url("../../icon/radio-dot.svg");
+  background: url("../../icon/radio-dot.svg") no-repeat;
+  background-size: contain;
 }
 
 /* ═══════════════════════════════════════════════
@@ -105,7 +109,7 @@ input[type="radio"]:checked + label::after {
 
 input[type="checkbox"] + label {
   position: relative;
-  padding-left: calc(var(--checkbox-width) + var(--radio-label-spacing));
+  padding-left: calc(var(--checkbox-width) + var(--checkbox-label-spacing));
 }
 
 input[type="checkbox"] + label::before {
@@ -128,34 +132,12 @@ input[type="checkbox"]:checked + label::after {
   transform: translateY(-50%);
   width: var(--checkmark-width);
   height: var(--checkmark-width);
-  color: var(--secondary);
-  background:
-    /* Diagonal: top-left → bottom-right (10 steps) */
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 0) calc(var(--checkmark-pixel) * 0) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 1) calc(var(--checkmark-pixel) * 1) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 2) calc(var(--checkmark-pixel) * 2) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 3) calc(var(--checkmark-pixel) * 3) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 4) calc(var(--checkmark-pixel) * 4) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 5) calc(var(--checkmark-pixel) * 5) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 6) calc(var(--checkmark-pixel) * 6) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 7) calc(var(--checkmark-pixel) * 7) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 8) calc(var(--checkmark-pixel) * 8) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 9) calc(var(--checkmark-pixel) * 9) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    /* Diagonal: top-right → bottom-left (10 steps) */
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 9) calc(var(--checkmark-pixel) * 0) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 8) calc(var(--checkmark-pixel) * 1) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 7) calc(var(--checkmark-pixel) * 2) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 6) calc(var(--checkmark-pixel) * 3) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 5) calc(var(--checkmark-pixel) * 4) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 4) calc(var(--checkmark-pixel) * 5) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 3) calc(var(--checkmark-pixel) * 6) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 2) calc(var(--checkmark-pixel) * 7) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 1) calc(var(--checkmark-pixel) * 8) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
-    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 0) calc(var(--checkmark-pixel) * 9) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat;
+  background: url("../../icon/checkbox-cross.svg") no-repeat;
+  background-size: contain;
 }
 
 input[type="checkbox"][disabled]:checked + label::after {
-  color: var(--disabled);
+  opacity: 0.5;
 }
 
 input[type="checkbox"]:active + label::before {
@@ -173,22 +155,52 @@ input[type="checkbox"][disabled] + label::before {
    ═══════════════════════════════════════════════ */
 
 select {
-  height: auto;
-  width: 10rem;
+  height: var(--select-height);
+  width: auto;
   font-family: Chicago_12;
-  font-size: 18px;
-  background-image: url("../../icon/select-button.svg");
-  background-position: top 2px right 2px;
+  font-size: 28px;
+  background-image: url("../../icon/select-arrow.svg");
+  background-position: center right 10px;
+  background-size: var(--select-arrow-size);
   background-repeat: no-repeat;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   position: relative;
-  padding: 3px 32px 3px 8px;
-  border: 1px solid var(--border-active);
-  box-shadow: var(--box-shadow);
+  padding: 0 70px 0 30px;
+  border: var(--border-width) solid var(--border-active);
   background-color: var(--color-white);
 }
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: 6px;  /* starts down from top-right corner */
+  bottom: -2px;
+  width: 2px;
+  background: var(--drop-shadow);
+  pointer-events: none;
+}
+
+.select-wrapper::before {
+  content: "";
+  position: absolute;
+  left: 6px;  /* starts right from bottom-left corner */
+  right: -2px;
+  bottom: -2px;
+  height: 2px;
+  background: var(--drop-shadow);
+  pointer-events: none;
+}
+
+/* Dropdown menu needs to be styled with JS for full effect, this is just styling the select element itself
+   and the menu uses the default browser styling. */
 
 /* ═══════════════════════════════════════════════
    FIELD ROWS & FORM LAYOUT
@@ -197,8 +209,8 @@ select {
 .field-row {
   display: flex;
   align-items: center;
-  font-family: Chicago_12;
-  font-size: 1em;
+  font-family: Geneva_9, Geneva, sans-serif;
+  font-size: 24px;
 }
 
 [class^="field-row"] + [class^="field-row"] {
