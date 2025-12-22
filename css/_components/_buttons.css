@@ -29,7 +29,7 @@
 
 .btn:disabled {
   color: var(--text-disabled);
-  border-color: var(--border-inactive);
+  border-color: var(--border-active);
   cursor: not-allowed;
 }
 

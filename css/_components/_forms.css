@@ -8,7 +8,7 @@
    ═══════════════════════════════════════════════ */
 
 input {
-  border: 1px solid var(--border-active);
+  border: var(--border-width) solid var(--border-active);
   background-color: var(--color-white);
   font-family: Chicago_12;
   font-size: 18px;
@@ -37,6 +37,11 @@ textarea:focus {
   outline-offset: -2px;
 }
 
+input::placeholder {
+  color: var(--text-disabled);
+  opacity: 1;
+}
+
 /* ═══════════════════════════════════════════════
    RADIO BUTTONS
    ═══════════════════════════════════════════════ */
@@ -50,18 +55,17 @@ input[type="checkbox"] {
   background: 0;
   position: fixed;
   opacity: 0;
-  border: none;
 }
 
 input[type="radio"] + label,
 input[type="checkbox"] + label {
-  line-height: 13px;
+  line-height: var(--checkbox-width);
   padding-left: 5px;
 }
 
 input[type="radio"] + label {
   position: relative;
-  margin-left: var(--radio-total-width);
+  padding-left: calc(var(--radio-width) + var(--radio-label-spacing));
 }
 
 input[type="radio"] + label::before {
@@ -73,15 +77,15 @@ input[type="radio"] + label::before {
   width: var(--radio-width);
   height: var(--radio-width);
   margin-right: var(--radio-label-spacing);
-  background: svg-load("../../icon/radio-border.svg");
-  border-image: svg-load("../../icon/radio-border.svg");
+  background: url("../../icon/radio-border.svg");
+  border-image: url("../../icon/radio-border.svg");
   width: 20px;
   height: 20px;
 }
 
 input[type="radio"]:focus-visible + label::before,
 input[type="radio"]:hover + label::before {
-  background-image: svg-load("../../icon/radio-border-focused.svg");
+  background-image: url("../../icon/radio-border-focused.svg");
 }
 
 input[type="radio"]:checked + label::after {
@@ -92,59 +96,76 @@ input[type="radio"]:checked + label::after {
   top: var(--radio-dot-top);
   left: var(--radio-dot-left);
   position: absolute;
-  background: svg-load("../../icon/radio-dot.svg");
+  background: url("../../icon/radio-dot.svg");
 }
 
 /* ═══════════════════════════════════════════════
    CHECKBOXES
    ═══════════════════════════════════════════════ */
 
-input[type="checkbox"] + label::before {
-  border: 1.5px solid var(--secondary);
-  width: 20px;
-  height: 20px;
-}
-
 input[type="checkbox"] + label {
   position: relative;
-  margin-left: var(--checkbox-total-width);
+  padding-left: calc(var(--checkbox-width) + var(--radio-label-spacing));
 }
 
 input[type="checkbox"] + label::before {
   content: "";
   position: absolute;
-  left: calc(-1 * (var(--checkbox-total-width-precalc)));
-  display: inline-block;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: var(--checkbox-width);
   height: var(--checkbox-width);
   background: var(--button-highlight);
-  box-shadow: var(--border-field);
-  margin-right: var(--radio-label-spacing);
-}
-
-input[type="checkbox"]:focus-visible + label::before,
-input[type="checkbox"]:hover + label::before {
-  outline: 1px solid var(--secondary);
+  border: var(--border-width) solid var(--border-active);
 }
 
 input[type="checkbox"]:checked + label::after {
   content: "";
-  display: block;
+  position: absolute;
+  left: calc((var(--checkbox-width) - var(--checkmark-width)) / 2 + var(--border-width));
+  top: 50%;
+  transform: translateY(-50%);
   width: var(--checkmark-width);
   height: var(--checkmark-width);
-  position: absolute;
-  top: var(--checkmark-top);
-  left: calc(-1 * (var(--checkbox-total-width-precalc)) + var(--checkmark-left));
-  background: svg-load("../../icon/checkmark.svg");
-  background-repeat: no-repeat;
+  color: var(--secondary);
+  background:
+    /* Diagonal: top-left → bottom-right (10 steps) */
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 0) calc(var(--checkmark-pixel) * 0) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 1) calc(var(--checkmark-pixel) * 1) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 2) calc(var(--checkmark-pixel) * 2) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 3) calc(var(--checkmark-pixel) * 3) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 4) calc(var(--checkmark-pixel) * 4) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 5) calc(var(--checkmark-pixel) * 5) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 6) calc(var(--checkmark-pixel) * 6) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 7) calc(var(--checkmark-pixel) * 7) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 8) calc(var(--checkmark-pixel) * 8) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 9) calc(var(--checkmark-pixel) * 9) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    /* Diagonal: top-right → bottom-left (10 steps) */
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 9) calc(var(--checkmark-pixel) * 0) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 8) calc(var(--checkmark-pixel) * 1) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 7) calc(var(--checkmark-pixel) * 2) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 6) calc(var(--checkmark-pixel) * 3) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 5) calc(var(--checkmark-pixel) * 4) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 4) calc(var(--checkmark-pixel) * 5) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 3) calc(var(--checkmark-pixel) * 6) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 2) calc(var(--checkmark-pixel) * 7) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 1) calc(var(--checkmark-pixel) * 8) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat,
+    linear-gradient(currentColor 0 0) calc(var(--checkmark-pixel) * 0) calc(var(--checkmark-pixel) * 9) / var(--checkmark-pixel) var(--checkmark-pixel) no-repeat;
+}
+
+input[type="checkbox"][disabled]:checked + label::after {
+  color: var(--disabled);
+}
+
+input[type="checkbox"]:active + label::before {
+  box-shadow:
+    inset var(--border-width) var(--border-width) 0 0 var(--border-active),
+    inset calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0 0 var(--border-active);
 }
 
 input[type="checkbox"][disabled] + label::before {
   background: var(--surface);
-}
-
-input[type="checkbox"][disabled]:checked + label::after {
-  background: svg-load("../../icon/checkmark-disabled.svg");
 }
 
 /* ═══════════════════════════════════════════════
@@ -156,7 +177,7 @@ select {
   width: 10rem;
   font-family: Chicago_12;
   font-size: 18px;
-  background-image: svg-load("../../icon/select-button.svg");
+  background-image: url("../../icon/select-button.svg");
   background-position: top 2px right 2px;
   background-repeat: no-repeat;
   appearance: none;
@@ -193,7 +214,7 @@ select {
    ═══════════════════════════════════════════════ */
 
 .apple {
-  background: svg-load("../../icon/apple.svg");
+  background: url("../../icon/apple.svg");
   height: 22px;
   width: 18px;
   background-repeat: no-repeat;

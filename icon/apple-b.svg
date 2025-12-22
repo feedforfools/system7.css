@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+   width="10.093095mm"
+   height="12.845757mm"
+   viewBox="0 0 10.093095 12.845756"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(0.030587,0,0,0.030587,-2.7522,-1.5294)" fill="#000000">
+    <!-- Leaf -->
+    <rect x="300" y="50" width="60" height="30"/>
+    <!-- Stem -->
+    <rect x="270" y="80" width="60" height="30"/>
+    <rect x="270" y="110" width="30" height="30"/>
+    <!-- Top of apple (split) -->
+    <rect x="150" y="140" width="90" height="30"/>
+    <rect x="300" y="140" width="90" height="30"/>
+    <!-- Upper body -->
+    <rect x="120" y="170" width="300" height="30"/>
+    <!-- Yellow section -->
+    <rect x="90" y="200" width="270" height="60"/>
+    <!-- Orange section -->
+    <rect x="90" y="260" width="270" height="30"/>
+    <rect x="90" y="290" width="300" height="30"/>
+    <!-- Red section -->
+    <rect x="90" y="320" width="330" height="30"/>
+    <!-- Pink section -->
+    <rect x="120" y="350" width="300" height="60"/>
+    <!-- Blue section (top) -->
+    <rect x="150" y="410" width="240" height="30"/>
+    <!-- Blue section (feet) -->
+    <rect x="180" y="440" width="60" height="30"/>
+    <rect x="300" y="440" width="60" height="30"/>
+  </g>
+</svg>
