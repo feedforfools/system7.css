@@ -9,11 +9,11 @@
 
 ul[role] {
   margin: 0;
-  padding: 0;
+  padding: 0 20px;
   list-style: none;
   cursor: pointer;
   font-family: Chicago_12;
-  font-size: 1em;
+  font-size: 28px;
 }
 
 /* ═══════════════════════════════════════════════
@@ -22,14 +22,18 @@ ul[role] {
 
 ul[role="menu-bar"] {
   display: flex;
+  align-items: center;
   background: var(--surface);
-  border: 1px solid var(--border-active);
-  box-shadow: var(--box-shadow);
+  border-bottom: var(--border-width) solid var(--border-active);
+  height: var(--menu-bar-height);
 }
 
 ul[role="menu-bar"] > [role="menu-item"] {
   position: relative;
-  padding: 6px 10px;
+  padding: 0px 14px;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 ul[role="menu-bar"] > [role="menu-item"]:focus,
@@ -38,6 +42,11 @@ ul[role="menu-bar"] > [role="menu-item"]:hover {
   background: var(--color-black);
   color: var(--color-white);
   outline: none;
+}
+
+/* Disabled menu bar items */
+ul[role="menu-bar"] > [role="menu-item"][aria-disabled="true"] {
+  color: var(--text-disabled);
 }
 
 ul[role="menu-bar"] > [role="menu-item"][aria-haspopup="false"] * {
@@ -53,10 +62,13 @@ ul[role="menu-bar"] > [role="menu-item"][aria-haspopup="false"] * {
 ul[role="menu"] {
   position: relative;
   min-width: 200px;
+  max-width: 400px;
   background: var(--color-white);
   color: var(--text-color);
-  border: 1px solid var(--border-active);
+  border: var(--border-width) solid var(--border-active);
   box-shadow: var(--box-shadow);
+  padding-left: 0;
+  padding-right: 0;
 }
 
 ul[role="menu"]::before {
@@ -85,10 +97,13 @@ ul[role="menu"] > [role="menu-item"] > button,
 ul[role="menu"] > [role="menu-item"][aria-haspopup="true"] {
   all: unset;
   position: relative;
-  padding: 5px 20px;
+  padding: 2px 20px;
   display: block;
   width: 100%;
   box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 ul[role="menu"] > [role="menu-item"] > a:hover,
@@ -110,16 +125,65 @@ ul [role="menu-item"]:focus-within > [role="menu"] {
   display: block;
 }
 
+
+/* ═══════════════════════════════════════════════
+   DISABLED MENU ITEMS
+   ═══════════════════════════════════════════════ */
+
+ul[role="menu"] > [role="menu-item"][aria-disabled="true"] > a,
+ul[role="menu"] > [role="menu-item"][aria-disabled="true"] > button,
+ul[role="menu"] > [role="menu-item"][aria-disabled="true"] {
+  color: var(--text-disabled);
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Ensure no hover/focus effects on disabled items */
+ul[role="menu"] > [role="menu-item"][aria-disabled="true"] > a:hover,
+ul[role="menu"] > [role="menu-item"][aria-disabled="true"] > button:hover,
+ul[role="menu"] > [role="menu-item"][aria-disabled="true"]:hover,
+ul[role="menu"] > [role="menu-item"][aria-disabled="true"] > a:focus,
+ul[role="menu"] > [role="menu-item"][aria-disabled="true"] > button:focus,
+ul[role="menu"] > [role="menu-item"][aria-disabled="true"]:focus {
+  background: transparent;
+  color: var(--text-disabled);
+  outline: none;
+}
+
+
 /* ═══════════════════════════════════════════════
    MENU DIVIDER
    ═══════════════════════════════════════════════ */
 
-ul [role="menu-item"].divider::after {
-  content: "";
-  pointer-events: none;
+/* Separator - takes the place of a menu item */
+ul[role="menu"] > [role="separator"] {
+  position: relative;
   display: block;
-  padding: 0;
-  border-top: 1px solid var(--border-active);
+  padding: 5px 0;
+  pointer-events: none;
+  cursor: default;
+  /* Match the line-height of menu text to get same height as text items */
+  height: 0.7em;
+  box-sizing: content-box;
+}
+
+ul[role="menu"] > [role="separator"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 60%;
+  transform: translateY(-50%);
+  height: var(--border-width);
+  background: var(--text-disabled);
+}
+
+/* Ensure no hover/focus effects on separator */
+ul[role="menu"] > [role="separator"]:hover,
+ul[role="menu"] > [role="separator"]:focus {
+  background: transparent;
+  color: inherit;
+  outline: none;
 }
 
 /* ═══════════════════════════════════════════════

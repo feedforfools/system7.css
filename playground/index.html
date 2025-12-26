@@ -200,30 +200,54 @@
         <section class="playground-section" id="menu">
           <h2 class="subheading">Menu Bar</h2>
           
-          <ul role="menu-bar" style="border: 1px solid black;">
+          <ul role="menu-bar">
+            <li role="menu-item" tabindex="0" aria-haspopup="true">
+              <div class="apple"></div>
+              <ul role="menu">
+                <li role="menu-item"><a href="#">About This Macintosh...</a></li>
+                <li role="separator"></li>
+                <li role="menu-item"><a href="#">Alarm Clock</a></li>
+                <li role="menu-item"><a href="#">Battery</a></li>
+                <li role="menu-item"><a href="#">Calculator</a></li>
+                <li role="menu-item"><a href="#">Chooser</a></li>
+                <li role="menu-item"><a href="#">Control Panels</a></li>
+                <li role="menu-item"><a href="#">Find in Catalog</a></li>
+                <li role="menu-item"><a href="#">Key Caps</a></li>
+                <li role="menu-item"><a href="#">Note Pad</a></li>
+                <li role="menu-item"><a href="#">Personal Catalog</a></li>
+                <li role="menu-item"><a href="#">Puzzle</a></li>
+                <li role="menu-item"><a href="#">Scrapbook</a></li>
+              </ul>
+            </li>
             <li role="menu-item" tabindex="0" aria-haspopup="true">
               File
               <ul role="menu">
                 <li role="menu-item"><a href="#">New</a></li>
                 <li role="menu-item"><a href="#">Open</a></li>
-                <li role="menu-item" class="divider"><a href="#">Save</a></li>
+                <li role="menu-item"><a href="#">Save</a></li>
+                <li role="separator"></li>
                 <li role="menu-item"><a href="#">Close</a></li>
               </ul>
             </li>
             <li role="menu-item" tabindex="0" aria-haspopup="true">
               Edit
               <ul role="menu">
-                <li role="menu-item"><a href="#">Undo</a></li>
-                <li role="menu-item"><a href="#">Cut</a></li>
-                <li role="menu-item"><a href="#">Copy</a></li>
-                <li role="menu-item"><a href="#">Paste</a></li>
+                <li role="menu-item" aria-disabled="true"><a href="#">Undo</a></li>
+                <li role="separator"></li>
+                <li role="menu-item" aria-disabled="true"><a href="#">Cut</a></li>
+                <li role="menu-item" aria-disabled="true"><a href="#">Copy</a></li>
+                <li role="menu-item" aria-disabled="true"><a href="#">Paste</a></li>
+                <li role="menu-item" aria-disabled="true"><a href="#">Clear</a></li>
+                <li role="menu-item"><a href="#">Select All</a></li>
+                <li role="separator"></li>
+                <li role="menu-item"><a href="#">Show Clipboard</a></li>
               </ul>
             </li>
-            <li role="menu-item" tabindex="0" aria-haspopup="true">
+            <li role="menu-item" tabindex="0" aria-haspopup="true" aria-disabled="true">
               View
               <ul role="menu">
-                <li role="menu-item"><a href="#">Zoom In</a></li>
-                <li role="menu-item"><a href="#">Zoom Out</a></li>
+                <li role="menu-item" aria-disabled="true"><a href="#">Zoom In</a></li>
+                <li role="menu-item" aria-disabled="true"><a href="#">Zoom Out</a></li>
               </ul>
             </li>
           </ul>

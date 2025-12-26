@@ -67,4 +67,10 @@
   --radio-label-spacing: 8px;
   --select-height: calc(var(--title-bar-height) + 6px);
   --select-arrow-size: 20px;
+
+  /* ═══════════════════════════════════════════════
+     MENU
+     ═══════════════════════════════════════════════ */
+  --menu-bar-height: calc(var(--title-bar-height) + 4px);
+
 }
