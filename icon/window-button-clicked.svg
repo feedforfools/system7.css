@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="9" height="8" viewBox="0 0 9 8"> 
+  <!-- Button background -->
+  <rect x="0" y="0" width="11" height="11" fill="#9999cc"/>
+  <!-- Black borders -->
+  <rect x="0" y="0" width="11" height="1" fill="#000000"/>
+  <rect x="0" y="0" width="1" height="11" fill="#000000"/>
+  <rect x="0" y="10" width="11" height="1" fill="#000000"/>
+  <rect x="10" y="0" width="1" height="11" fill="#000000"/>
+  <!-- Internal edges -->
+  <rect x="5" y="0" width="1" height="4" fill="#000000"/>
+  <rect x="7" y="5" width="4" height="1" fill="#000000"/>
+  <rect x="5" y="7" width="1" height="4" fill="#000000"/>
+  <rect x="0" y="5" width="4" height="1" fill="#000000"/>
+  <!-- Inner corner dots -->
+  <rect x="3" y="3" width="1" height="1" fill="#000000"/>
+  <rect x="7" y="3" width="1" height="1" fill="#000000"/>
+  <rect x="7" y="7" width="1" height="1" fill="#000000"/>
+  <rect x="3" y="7" width="1" height="1" fill="#000000"/>
+  <!-- Outer corner dots -->
+  <rect x="2" y="2" width="1" height="1" fill="#000000"/>
+  <rect x="8" y="2" width="1" height="1" fill="#000000"/>
+  <rect x="8" y="8" width="1" height="1" fill="#000000"/>
+  <rect x="2" y="8" width="1" height="1" fill="#000000"/>
+</svg>

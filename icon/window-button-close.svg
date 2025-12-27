@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11"> 
+  <!-- Button background -->
+  <rect x="0" y="0" width="11" height="11" fill="#ccccff"/>
+  <!-- Top-left hole insets -->
+  <rect x="0" y="0" width="11" height="1" fill="#333266"/>
+  <rect x="0" y="0" width="1" height="11" fill="#333266"/>
+  <!-- Central square -->
+  <rect x="2" y="2" width="8" height="8" fill="#aaaaaa"/>
+  <!-- Bottom-right square insets -->
+  <rect x="2" y="9" width="8" height="1" fill="#333266"/>
+  <rect x="9" y="2" width="1" height="8" fill="#333266"/>
+</svg>

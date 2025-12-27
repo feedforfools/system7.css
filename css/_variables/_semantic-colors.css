@@ -11,7 +11,7 @@
   --surface: var(--color-white);
   --surface-header: var(--color-gray-100);
   --text-color: var(--color-black);
-  --text-disabled: var(--color-gray-500);
+  --text-disabled: var(--color-gray-600);
 
   /* ═══════════════════════════════════════════════
      BORDERS & SHADOWS
@@ -36,7 +36,7 @@
   /* ═══════════════════════════════════════════════
      TITLE BAR
      ═══════════════════════════════════════════════ */
-  --title-bar-stripe: var(--color-gray-600);
+  --title-bar-stripe: var(--color-gray-700);
   --title-bar-glow-light: var(--color-purple-100);
   --title-bar-glow-dark: var(--color-purple-400);
 
@@ -69,6 +69,4 @@
      ═══════════════════════════════════════════════ */
   --primary: var(--surface);
   --secondary: var(--color-black);
-  --tertiary: var(--color-gray-500);
-  --disabled: var(--color-gray-500);
 }

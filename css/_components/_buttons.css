@@ -18,7 +18,7 @@
   font-family: Chicago_12;
   cursor: pointer;
   border-style: solid;
-  border-width: calc(0.5 * var(--base-unit));
+  border-width: var(--base-unit);
   border-image-source: url('../../icon/button.svg');
   border-image-slice: var(--btn-border-slice) fill;
   border-image-width: var(--btn-border-width);

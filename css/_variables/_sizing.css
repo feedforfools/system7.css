@@ -22,7 +22,6 @@
      BORDERS
      ═══════════════════════════════════════════════ */
   --border-width: calc(1 * var(--base-unit));
-  --border-width-thin: calc(0.5 * var(--base-unit));
 
   /* ═══════════════════════════════════════════════
      WINDOW DIMENSIONS
@@ -101,10 +100,10 @@
   --btn-padding-v: calc(1.5 * var(--base-unit));
   --btn-padding-h: calc(6 * var(--base-unit));
   --btn-border-slice: 3;
-  --btn-border-width: calc(1.5 * var(--base-unit));
-  --btn-default-offset: calc(2.5 * var(--base-unit));
+  --btn-border-width: calc(3 * var(--base-unit));
+  --btn-default-offset: calc(4 * var(--base-unit));
   --btn-default-border-slice: 7;
-  --btn-default-border-width: calc(3.5 * var(--base-unit));
+  --btn-default-border-width: calc(6 * var(--base-unit));
 
   /* ═══════════════════════════════════════════════
      INPUT CONTROLS

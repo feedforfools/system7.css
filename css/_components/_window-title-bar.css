@@ -109,7 +109,7 @@
   background: var(--surface);
   cursor: default;
   font-family: Chicago_12, Chicago, sans-serif;
-  color: var(--tertiary);
+  color: var(--text-disabled);
 }
 
 /* ═══════════════════════════════════════════════
@@ -130,100 +130,42 @@
   border: none;
   cursor: pointer;
   flex-shrink: 0;
-  background: var(--button-hole-bg);
-  box-shadow: 
-    inset var(--border-width) var(--border-width) 0 var(--button-hole-inset),
-    0 0 0 var(--border-width) var(--surface-header);
+  background: transparent;
+  box-shadow: 0 0 0 var(--border-width) var(--surface-header);
 }
 
-.title-bar button::before {
-  content: "";
-  display: block;
-  width: var(--button-item-size);
-  height: var(--button-item-size);
-  margin-top: calc(0.5 * var(--base-unit));
-  margin-left: calc(0.5 * var(--base-unit));
-  background: var(--button-inner-bg);
-  box-shadow: inset calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0 var(--button-inner-shadow);
+/* Close button */
+.title-bar button.close {
+  margin-left: var(--title-button-close-margin);
+  background: url("../../icon/window-button-close.svg") no-repeat center / contain;
 }
 
-/* Active state (clicked) */
+/* Resize/zoom button */
+.title-bar button.resize {
+  margin-right: var(--title-button-resize-margin);
+  background: url("../../icon/window-button-resize.svg") no-repeat center / contain;
+}
+
+/* Active state (clicked) - applies to both close and resize */
 .title-bar button:active {
-  background: var(--button-hole-bg-active);
-  background-image: 
-    linear-gradient(to bottom, var(--button-active-border) 0, var(--button-active-border) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
-    linear-gradient(to left, var(--button-active-border) 0, var(--button-active-border) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
-    linear-gradient(to top, var(--button-active-border) 0, var(--button-active-border) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
-    linear-gradient(to right, var(--button-active-border) 0, var(--button-active-border) var(--button-active-border-segment-length), transparent var(--button-active-border-segment-length)),
-    linear-gradient(var(--button-active-border), var(--button-active-border)),
-    linear-gradient(var(--button-active-border), var(--button-active-border)),
-    linear-gradient(var(--button-active-border), var(--button-active-border)),
-    linear-gradient(var(--button-active-border), var(--button-active-border)),
-    linear-gradient(var(--button-active-border), var(--button-active-border)),
-    linear-gradient(var(--button-active-border), var(--button-active-border)),
-    linear-gradient(var(--button-active-border), var(--button-active-border)),
-    linear-gradient(var(--button-active-border), var(--button-active-border));
-  background-size: 
-    var(--button-active-border-thickness) calc(var(--button-active-border-segment-length) + 0.5 * var(--base-unit)), 
-    calc(var(--button-active-border-segment-length) + 0.5 * var(--base-unit)) var(--button-active-border-thickness), 
-    var(--button-active-border-thickness) calc(var(--button-active-border-segment-length) + 0.5 * var(--base-unit)), 
-    calc(var(--button-active-border-segment-length) + 0.5 * var(--base-unit)) var(--button-active-border-thickness), 
-    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
-    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
-    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
-    var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
-    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size), 
-    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size), 
-    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size), 
-    var(--button-active-corner-outer-size) var(--button-active-corner-outer-size);
-  background-position: 
-    center top, right center, center bottom, left center,
-    calc(50% + var(--button-active-corner-inner-offset)) calc(50% - var(--button-active-corner-inner-offset)), 
-    calc(50% + var(--button-active-corner-inner-offset)) calc(50% + var(--button-active-corner-inner-offset)), 
-    calc(50% - var(--button-active-corner-inner-offset)) calc(50% + var(--button-active-corner-inner-offset)), 
-    calc(50% - var(--button-active-corner-inner-offset)) calc(50% - var(--button-active-corner-inner-offset)), 
-    calc(50% + var(--button-active-corner-outer-offset)) calc(50% - var(--button-active-corner-outer-offset)), 
-    calc(50% + var(--button-active-corner-outer-offset)) calc(50% + var(--button-active-corner-outer-offset)), 
-    calc(50% - var(--button-active-corner-outer-offset)) calc(50% + var(--button-active-corner-outer-offset)), 
-    calc(50% - var(--button-active-corner-outer-offset)) calc(50% - var(--button-active-corner-outer-offset));
-  background-repeat: no-repeat;
-  box-shadow: 
-    inset var(--button-active-border-thickness) var(--button-active-border-thickness) 0 var(--button-active-border),
-    inset calc(-1 * var(--button-active-border-thickness)) calc(-1 * var(--button-active-border-thickness)) 0 var(--button-active-border),
-    0 0 0 var(--button-active-border-thickness) var(--surface-header);
+  background: url("../../icon/window-button-clicked.svg") no-repeat center / contain;
+  box-shadow: 0 0 0 var(--button-active-border-thickness) var(--surface-header);
 }
 
-.title-bar button:active::before,
-.title-bar button.resize:active::after {
-  visibility: hidden;
+/* Remove the ::before pseudo-element since we're using SVGs now */
+.title-bar button::before {
+  display: none;
+}
+
+/* Remove the ::after pseudo-element for resize button */
+.title-bar button.resize::after {
+  display: none;
 }
 
 .title-bar button span {
   position: absolute !important;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
-}
-
-/* Close button (left) */
-.title-bar button.close {
-  margin-left: var(--title-button-close-margin);
-}
-
-/* Resize/zoom button (right) */
-.title-bar button.resize {
-  margin-right: var(--title-button-resize-margin);
-}
-
-.title-bar button.resize::after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: calc(var(--button-item-size) / 1.5);
-  height: calc(var(--button-item-size) / 1.5);
-  margin-top: calc(-1 * var(--resize-inner-offset));
-  margin-left: calc(-1 * var(--resize-inner-offset));
-  background: var(--button-inner-bg);
-  box-shadow: inset calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0 var(--button-inner-shadow);
 }
 
 .title-bar button.hidden {
@@ -243,7 +185,7 @@
   height: var(--inactive-button-size);
   margin: 0;
   padding: 0;
-  border: var(--border-width-thin) solid var(--border-inactive);
+  border: var(--border-width) solid var(--border-inactive);
   background: var(--color-white);
   cursor: default;
   flex-shrink: 0;
@@ -255,7 +197,7 @@
   width: var(--inactive-button-inner-size);
   height: var(--inactive-button-inner-size);
   background: var(--color-white);
-  border: var(--border-width-thin) solid var(--border-inactive);
+  border: var(--border-width) solid var(--border-inactive);
   box-shadow: none;
 }
 

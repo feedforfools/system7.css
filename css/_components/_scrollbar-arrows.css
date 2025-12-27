@@ -211,7 +211,7 @@
   border-left: var(--border-width) solid var(--border-active);
   border-top: var(--border-width) solid var(--border-active);
   background-color: var(--surface-header);
-  background-image: url('../../icon/resize.svg');
+  background-image: url('../../icon/window-button-corner-resize.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: calc(100% - var(--border-width) * 2);
