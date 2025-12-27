@@ -13,7 +13,7 @@
   align-items: center;
   height: var(--title-bar-height);
   margin: 0;
-  padding: 1px 7px;
+  padding: var(--title-bar-padding) var(--title-bar-padding-h);
   
   /* Local stripe position calculations */
   --s: var(--stripe-thickness);
@@ -64,18 +64,18 @@
     );
   background-color: var(--surface-header);
   background-repeat: no-repeat;
-  border-bottom: 2px solid var(--border-active);
+  border-bottom: var(--border-width) solid var(--border-active);
   box-shadow:
     inset calc(-1 * var(--vertical-stripe-width)) calc(-1 * var(--horizontal-glow-width)) 0 0 var(--title-bar-glow-dark),
     inset var(--vertical-stripe-width) var(--horizontal-glow-width) 0 0 var(--title-bar-glow-light);
 }
 
 .title-bar .title {
-  padding: 0 10px 0 14px;
+  padding: 0 var(--title-padding-right) 0 var(--title-padding-left);
   margin: 0 auto;
-  font-size: 28px;
+  font-size: calc(14 * var(--base-unit));
   font-weight: normal;
-  line-height: 28px;
+  line-height: calc(14 * var(--base-unit));
   text-align: center;
   background: var(--surface-header);
   cursor: default;
@@ -92,19 +92,19 @@
   flex: none;
   display: flex;
   align-items: center;
-  height: 30px;
+  height: var(--title-bar-height);
   margin: 0;
-  padding: 1px 7px;
+  padding: var(--title-bar-padding) var(--title-bar-padding-h);
   background: var(--surface);
-  border-bottom: 2px solid var(--border-inactive);
+  border-bottom: var(--border-width) solid var(--border-inactive);
 }
 
 .inactive-title-bar .title {
-  padding: 0 10px 0 14px;
+  padding: 0 var(--title-padding-right) 0 var(--title-padding-left);
   margin: 0 auto;
-  font-size: 28px;
+  font-size: calc(14 * var(--base-unit));
   font-weight: normal;
-  line-height: 28px;
+  line-height: calc(14 * var(--base-unit));
   text-align: center;
   background: var(--surface);
   cursor: default;
@@ -123,7 +123,7 @@
   justify-content: center;
   height: var(--button-hole-size);
   width: var(--button-hole-size);
-  margin: 5px;
+  margin: var(--title-button-margin);
   padding: 0;
   outline: none;
   border-radius: 0;
@@ -132,8 +132,8 @@
   flex-shrink: 0;
   background: var(--button-hole-bg);
   box-shadow: 
-    inset 2px 2px 0 var(--button-hole-inset),
-    0 0 0 2px var(--surface-header);
+    inset var(--border-width) var(--border-width) 0 var(--button-hole-inset),
+    0 0 0 var(--border-width) var(--surface-header);
 }
 
 .title-bar button::before {
@@ -141,10 +141,10 @@
   display: block;
   width: var(--button-item-size);
   height: var(--button-item-size);
-  margin-top: 1px;
-  margin-left: 1px;
+  margin-top: calc(0.5 * var(--base-unit));
+  margin-left: calc(0.5 * var(--base-unit));
   background: var(--button-inner-bg);
-  box-shadow: inset -2px -2px 0 var(--button-inner-shadow);
+  box-shadow: inset calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0 var(--button-inner-shadow);
 }
 
 /* Active state (clicked) */
@@ -164,10 +164,10 @@
     linear-gradient(var(--button-active-border), var(--button-active-border)),
     linear-gradient(var(--button-active-border), var(--button-active-border));
   background-size: 
-    var(--button-active-border-thickness) calc(var(--button-active-border-segment-length) + 1px), 
-    calc(var(--button-active-border-segment-length) + 1px) var(--button-active-border-thickness), 
-    var(--button-active-border-thickness) calc(var(--button-active-border-segment-length) + 1px), 
-    calc(var(--button-active-border-segment-length) + 1px) var(--button-active-border-thickness), 
+    var(--button-active-border-thickness) calc(var(--button-active-border-segment-length) + 0.5 * var(--base-unit)), 
+    calc(var(--button-active-border-segment-length) + 0.5 * var(--base-unit)) var(--button-active-border-thickness), 
+    var(--button-active-border-thickness) calc(var(--button-active-border-segment-length) + 0.5 * var(--base-unit)), 
+    calc(var(--button-active-border-segment-length) + 0.5 * var(--base-unit)) var(--button-active-border-thickness), 
     var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
     var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
     var(--button-active-corner-inner-size) var(--button-active-corner-inner-size), 
@@ -206,12 +206,12 @@
 
 /* Close button (left) */
 .title-bar button.close {
-  margin-left: 7px;
+  margin-left: var(--title-button-close-margin);
 }
 
 /* Resize/zoom button (right) */
 .title-bar button.resize {
-  margin-right: 7px;
+  margin-right: var(--title-button-resize-margin);
 }
 
 .title-bar button.resize::after {
@@ -220,10 +220,10 @@
   display: block;
   width: calc(var(--button-item-size) / 1.5);
   height: calc(var(--button-item-size) / 1.5);
-  margin-top: -3px;
-  margin-left: -3px;
+  margin-top: calc(-1 * var(--resize-inner-offset));
+  margin-left: calc(-1 * var(--resize-inner-offset));
   background: var(--button-inner-bg);
-  box-shadow: inset -2px -2px 0 var(--button-inner-shadow);
+  box-shadow: inset calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0 var(--button-inner-shadow);
 }
 
 .title-bar button.hidden {
@@ -239,11 +239,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 15px;
-  height: 15px;
+  width: var(--inactive-button-size);
+  height: var(--inactive-button-size);
   margin: 0;
   padding: 0;
-  border: 1px solid var(--border-inactive);
+  border: var(--border-width-thin) solid var(--border-inactive);
   background: var(--color-white);
   cursor: default;
   flex-shrink: 0;
@@ -252,17 +252,17 @@
 .inactive-title-bar button::before {
   content: "";
   display: block;
-  width: 7px;
-  height: 7px;
+  width: var(--inactive-button-inner-size);
+  height: var(--inactive-button-inner-size);
   background: var(--color-white);
-  border: 1px solid var(--border-inactive);
+  border: var(--border-width-thin) solid var(--border-inactive);
   box-shadow: none;
 }
 
 .inactive-title-bar button.close {
-  margin-right: 6px;
+  margin-right: var(--inactive-button-margin);
 }
 
 .inactive-title-bar button.resize {
-  margin-left: 6px;
+  margin-left: var(--inactive-button-margin);
 }

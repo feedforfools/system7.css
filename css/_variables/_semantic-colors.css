@@ -17,14 +17,14 @@
      BORDERS & SHADOWS
      ═══════════════════════════════════════════════ */
   --border-active: var(--color-black);
-  --border-inactive: var(--color-gray-700);
+  --border-inactive: var(--color-gray-800);
   --drop-shadow: var(--color-black);
 
   /* ═══════════════════════════════════════════════
      DIALOG FRAME
      ═══════════════════════════════════════════════ */
   --dialog-frame-highlight: var(--color-purple-100);
-  --dialog-frame-shadow: var(--color-purple-300);
+  --dialog-frame-shadow: var(--color-purple-500);
   --dialog-frame-border: var(--color-gray-300);
 
   /* ═══════════════════════════════════════════════
@@ -38,16 +38,16 @@
      ═══════════════════════════════════════════════ */
   --title-bar-stripe: var(--color-gray-600);
   --title-bar-glow-light: var(--color-purple-100);
-  --title-bar-glow-dark: var(--color-purple-200);
+  --title-bar-glow-dark: var(--color-purple-400);
 
   /* ═══════════════════════════════════════════════
      TITLE BAR BUTTONS
      ═══════════════════════════════════════════════ */
   --button-hole-bg: var(--color-purple-100);
-  --button-hole-bg-active: var(--color-purple-200);
-  --button-hole-inset: var(--color-purple-400);
+  --button-hole-bg-active: var(--color-purple-400);
+  --button-hole-inset: var(--color-purple-700);
   --button-inner-bg: var(--color-gray-400);
-  --button-inner-shadow: var(--color-purple-400);
+  --button-inner-shadow: var(--color-purple-700);
   --button-active-border: var(--color-black);
 
   /* ═══════════════════════════════════════════════
@@ -55,11 +55,11 @@
      ═══════════════════════════════════════════════ */
   --scrollbar-track-bg: var(--color-gray-200);
   --scrollbar-thumb-bg: var(--color-gray-400);
-  --scrollbar-thumb-border-purple: var(--color-purple-400);
-  --scrollbar-thumb-border-gray: var(--color-gray-700);
-  --scrollbar-thumb-stripe-first: var(--color-purple-200);
+  --scrollbar-thumb-border-purple: var(--color-purple-700);
+  --scrollbar-thumb-border-gray: var(--color-gray-800);
+  --scrollbar-thumb-stripe-first: var(--color-purple-400);
   --scrollbar-thumb-stripe: var(--color-purple-100);
-  --scrollbar-thumb-stripe-dark: var(--color-purple-300);
+  --scrollbar-thumb-stripe-dark: var(--color-purple-500);
   --scrollbar-arrow-color: var(--border-active);
   --scrollbar-arrow-bg: var(--color-gray-200);
   --scrollbar-arrow-bg-active: var(--color-gray-500);

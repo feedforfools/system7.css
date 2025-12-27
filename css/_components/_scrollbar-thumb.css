@@ -1,0 +1,175 @@
+/**
+ * Scrollbar Thumb & Track
+ * Gradient-based rendering for thumb borders and stripe patterns
+ * (Cannot be simplified to SVG due to dynamic sizing requirements)
+ */
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR BASE
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: var(--scrollbar-button-size);
+}
+
+::-webkit-scrollbar:horizontal {
+  height: var(--scrollbar-button-size);
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR TRACK
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar-track {
+  background-color: var(--surface-header);
+  background-image: url("data:image/svg+xml,%3Csvg width='4' height='2' viewBox='0 0 4 2' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23949494'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%23949494'/%3E%3C/svg%3E");
+  background-size: var(--scrollbar-pattern-width) var(--scrollbar-pattern-height);
+  border-left: var(--border-width) solid var(--border-active);
+}
+
+::-webkit-scrollbar-track:horizontal {
+  border-left: none;
+  border-top: var(--border-width) solid var(--border-active);
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR THUMB
+   Uses layered linear-gradients for:
+   - Border effects (light/dark edges)
+   - Center stripe pattern (horizontal/vertical)
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-bg);
+  background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  border-left: var(--window-border-active);
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  background-image:
+    /* Top dark gray line */
+    linear-gradient(to bottom, var(--scrollbar-thumb-border-gray) 0, var(--scrollbar-thumb-border-gray) var(--border-width), transparent var(--border-width)),
+    /* Top edge - light purple (below gray line) */
+    linear-gradient(to bottom, var(--button-hole-bg) 0, var(--button-hole-bg) var(--border-width), transparent var(--border-width)),
+    /* Left edge - light purple */
+    linear-gradient(to right, var(--button-hole-bg) 0, var(--button-hole-bg) var(--border-width), transparent var(--border-width)),
+    /* Bottom edge - dark purple */
+    linear-gradient(to top, var(--button-hole-inset) 0, var(--button-hole-inset) var(--border-width), transparent var(--border-width)),
+    /* Right edge - dark purple */
+    linear-gradient(to left, var(--button-hole-inset) 0, var(--button-hole-inset) var(--border-width), transparent var(--border-width)),
+    /* Center horizontal stripes pattern - first stripe different, then alternating */
+    linear-gradient(
+      to bottom,
+      var(--scrollbar-thumb-stripe-first) 0,
+      var(--scrollbar-thumb-stripe-first) var(--border-width),
+      transparent var(--border-width)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--scrollbar-thumb-stripe) 0,
+      var(--scrollbar-thumb-stripe) var(--border-width),
+      var(--scrollbar-thumb-stripe-dark) var(--border-width),
+      var(--scrollbar-thumb-stripe-dark) calc(2 * var(--border-width))
+    );
+  
+  background-position: 
+    0 0,
+    0 var(--border-width),
+    0 0,
+    0 100%,
+    100% 0,
+    var(--scrollbar-thumb-stripe-h-margin) var(--scrollbar-thumb-stripe-v-margin),
+    var(--scrollbar-thumb-stripe-h-margin) calc(var(--scrollbar-thumb-stripe-v-margin) + var(--scrollbar-thumb-stripe-height));
+  background-size:
+    100% var(--border-width),
+    100% var(--border-width),
+    var(--border-width) 100%,
+    100% var(--border-width),
+    var(--border-width) 100%,
+    calc(100% - var(--scrollbar-thumb-stripe-h-margin) * 2) var(--scrollbar-thumb-stripe-height),
+    calc(100% - var(--scrollbar-thumb-stripe-h-margin) * 2) calc(100% - var(--scrollbar-thumb-stripe-v-margin) * 2 - var(--scrollbar-thumb-stripe-height));
+  background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  border-top: var(--window-border-active);
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  background-image:
+    /* Left dark gray line */
+    linear-gradient(to right, var(--scrollbar-thumb-border-gray) 0, var(--scrollbar-thumb-border-gray) var(--border-width), transparent var(--border-width)),
+    /* Top edge - light purple */
+    linear-gradient(to bottom, var(--button-hole-bg) 0, var(--button-hole-bg) var(--border-width), transparent var(--border-width)),
+    /* Left edge - light purple (to the right of gray line) */
+    linear-gradient(to right, var(--button-hole-bg) 0, var(--button-hole-bg) var(--border-width), transparent var(--border-width)),
+    /* Bottom edge - dark purple */
+    linear-gradient(to top, var(--button-hole-inset) 0, var(--button-hole-inset) var(--border-width), transparent var(--border-width)),
+    /* Right edge - dark purple */
+    linear-gradient(to left, var(--button-hole-inset) 0, var(--button-hole-inset) var(--border-width), transparent var(--border-width)),
+    /* Center vertical stripes pattern - first stripe different, then alternating */
+    linear-gradient(
+      to right,
+      var(--scrollbar-thumb-stripe-first) 0,
+      var(--scrollbar-thumb-stripe-first) var(--border-width),
+      transparent var(--border-width)
+    ),
+    repeating-linear-gradient(
+      to right,
+      var(--scrollbar-thumb-stripe) 0,
+      var(--scrollbar-thumb-stripe) var(--border-width),
+      var(--scrollbar-thumb-stripe-dark) var(--border-width),
+      var(--scrollbar-thumb-stripe-dark) calc(2 * var(--border-width))
+    );
+  background-position: 
+    0 0,
+    0 0,
+    var(--border-width) 0,
+    0 100%,
+    100% 0,
+    var(--scrollbar-thumb-stripe-v-margin) var(--scrollbar-thumb-stripe-h-margin),
+    calc(var(--scrollbar-thumb-stripe-v-margin) + var(--scrollbar-thumb-stripe-height)) var(--scrollbar-thumb-stripe-h-margin);
+  background-size:
+    var(--border-width) 100%,
+    100% var(--border-width),
+    var(--border-width) 100%,
+    100% var(--border-width),
+    var(--border-width) 100%,
+    var(--scrollbar-thumb-stripe-height) calc(100% - var(--scrollbar-thumb-stripe-h-margin) * 2),
+    calc(100% - var(--scrollbar-thumb-stripe-v-margin) * 2 - var(--scrollbar-thumb-stripe-height)) calc(100% - var(--scrollbar-thumb-stripe-h-margin) * 2);
+  background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: transparent;
+  border: var(--border-width) dashed var(--border-active);
+  box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════════
+   INACTIVE WINDOW SCROLLBARS
+   ═══════════════════════════════════════════════ */
+
+.window.inactive .window-pane::-webkit-scrollbar {
+  display: none;
+}
+
+.window-pane[data-scrollable="false"]::-webkit-scrollbar {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════
+   DISABLED TRACK
+   For windows with .no-scroll, .no-scroll-v, or .no-scroll-h classes
+   Solid gray background (no checkered pattern), no thumb visible
+   ═══════════════════════════════════════════════ */
+
+.window.no-scroll .window-pane::-webkit-scrollbar-track,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-track:vertical,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-track:horizontal {
+  background-color: var(--surface-header);
+  background-image: none;
+}

@@ -12,8 +12,8 @@
   flex-direction: column;
   position: relative;
   margin: 1rem;
-  min-width: 320px;
-  min-height: 215px;
+  min-width: calc(160 * var(--base-unit));
+  min-height: calc(107.5 * var(--base-unit));
   overflow: hidden;
   background: var(--surface);
   border: var(--window-border-active);
@@ -34,8 +34,8 @@
   position: relative;
   overflow: scroll;
   flex: 1;
-  padding: 1rem 2rem;
-  font-size: 27px;
+  padding: calc(0.5 * var(--base-unit)) calc(1 * var(--base-unit));
+  font-size: calc(13.5 * var(--base-unit));
   letter-spacing: -0.025em;
   background: var(--color-white);
   font-family: Geneva_9, Geneva, sans-serif;
@@ -74,7 +74,7 @@
   flex: none;
   display: block;
   height: var(--separator-height);
-  border-bottom: 2px solid var(--secondary);
+  border-bottom: var(--border-width) solid var(--secondary);
   overflow: hidden;
   font-size: 0;
   line-height: 0;
@@ -94,8 +94,8 @@
   align-items: center;
   height: var(--details-bar-height);
   justify-content: space-between;
-  padding: 0.2rem 0.8rem;
-  border-bottom: 2px solid var(--secondary);
-  font-size: 28px;
+  padding: calc(0.1 * var(--base-unit)) calc(0.4 * var(--base-unit));
+  border-bottom: var(--border-width) solid var(--secondary);
+  font-size: calc(14 * var(--base-unit));
   font-weight: normal;
 }

@@ -1,20 +1,35 @@
 /**
- * Sizing, Spacing, and Dimension Tokens
+ * Scalable Sizing System
+ * 
+ * All dimensions are expressed as multiples of --base-unit.
+ * To scale the entire UI, change only --base-unit.
+ * 
+ * Example: 
+ *   --base-unit: 1px  → "minimal" 0.5x scale
+ *   --base-unit: 2px  → 1x scale (current default)
+ *   --base-unit: 4px  → 2x scale (retina-friendly)
  */
 
 :root {
   /* ═══════════════════════════════════════════════
+     THE MASTER SCALE UNIT
+     Integrators change ONLY this value to scale everything
+     Default is 2px to match original design
+     ═══════════════════════════════════════════════ */
+  --base-unit: 2px;
+
+  /* ═══════════════════════════════════════════════
      BORDERS
      ═══════════════════════════════════════════════ */
-  --border-width: 2px;
-  --border-width-thin: 1px;
+  --border-width: calc(1 * var(--base-unit));
+  --border-width-thin: calc(0.5 * var(--base-unit));
 
   /* ═══════════════════════════════════════════════
      WINDOW DIMENSIONS
      ═══════════════════════════════════════════════ */
-  --title-bar-height: 30px;
-  --details-bar-height: 26px;
-  --separator-height: 2px;
+  --title-bar-height: calc(15 * var(--base-unit));
+  --details-bar-height: calc(13 * var(--base-unit));
+  --separator-height: calc(1 * var(--base-unit));
 
   /* ═══════════════════════════════════════════════
      DIALOG
@@ -27,50 +42,129 @@
   --stripe-count: 6;
   --stripe-margin: 12%;
   --stripe-bands: 11;  /* stripe-count + (stripe-count - 1) gaps */
-  --horizontal-glow-width: 2px;
-  --vertical-stripe-width: 2px;
+  --horizontal-glow-width: calc(1 * var(--base-unit));
+  --vertical-stripe-width: calc(1 * var(--base-unit));
 
   /* ═══════════════════════════════════════════════
      TITLE BAR BUTTONS
      ═══════════════════════════════════════════════ */
-  --button-hole-size: 20px;
-  --button-item-size: 14px;
-  --button-active-border-thickness: 2px;
-  --button-active-border-segment-length: 7px;
-  --button-active-corner-inner-size: 2px;
-  --button-active-corner-outer-size: 2px;
-  --button-active-corner-inner-offset: 4px;
-  --button-active-corner-outer-offset: 6px;
+  --button-hole-size: calc(10 * var(--base-unit));
+  --button-item-size: calc(7 * var(--base-unit));
+  --button-active-border-thickness: calc(1 * var(--base-unit));
+  --button-active-border-segment-length: calc(3.5 * var(--base-unit));
+  --button-active-corner-inner-size: calc(1 * var(--base-unit));
+  --button-active-corner-outer-size: calc(1 * var(--base-unit));
+  --button-active-corner-inner-offset: calc(2 * var(--base-unit));
+  --button-active-corner-outer-offset: calc(3 * var(--base-unit));
 
   /* ═══════════════════════════════════════════════
      SCROLLBAR
      ═══════════════════════════════════════════════ */
-  --scrollbar-button-size: 28px;
-  --scrollbar-thumb-stripe-h-margin: 7px;
-  --scrollbar-thumb-stripe-v-margin: 10px;
-  --scrollbar-thumb-stripe-height: 2px;
-  --inactive-scrollbar-size: 28px;
+  --scrollbar-button-size: calc(14 * var(--base-unit));
+  --scrollbar-thumb-stripe-h-margin: calc(3.5 * var(--base-unit));
+  --scrollbar-thumb-stripe-v-margin: calc(5 * var(--base-unit));
+  --scrollbar-thumb-stripe-height: calc(1 * var(--base-unit));
+  --inactive-scrollbar-size: calc(14 * var(--base-unit));
 
   /* ═══════════════════════════════════════════════
      SPACING
      ═══════════════════════════════════════════════ */
-  --element-spacing: 8px;
-  --grouped-element-spacing: 6px;
+  --element-spacing: calc(4 * var(--base-unit));
+  --grouped-element-spacing: calc(3 * var(--base-unit));
 
   /* ═══════════════════════════════════════════════
      FORM CONTROLS
      ═══════════════════════════════════════════════ */
-  --radio-width: 20px;
+  --radio-width: calc(10 * var(--base-unit));
   --radio-dot-width: calc(0.5 * var(--radio-width));
-  --checkbox-width: 20px;
-  --checkbox-label-spacing: 12px;
-  --radio-label-spacing: 8px;
-  --select-height: calc(var(--title-bar-height) + 6px);
-  --select-arrow-size: 20px;
+  --checkbox-width: calc(10 * var(--base-unit));
+  --checkbox-label-spacing: calc(6 * var(--base-unit));
+  --radio-label-spacing: calc(4 * var(--base-unit));
+  --select-height: calc(var(--title-bar-height) + 3 * var(--base-unit));
+  --select-arrow-size: calc(10 * var(--base-unit));
 
   /* ═══════════════════════════════════════════════
      MENU
      ═══════════════════════════════════════════════ */
-  --menu-bar-height: calc(var(--title-bar-height) + 4px);
+  --menu-bar-height: calc(var(--title-bar-height) + 2 * var(--base-unit));
 
+  /* ═══════════════════════════════════════════════
+     SHADOWS
+     ═══════════════════════════════════════════════ */
+  --shadow-offset: calc(1 * var(--base-unit));
+
+  /* ═══════════════════════════════════════════════
+     BUTTONS
+     ═══════════════════════════════════════════════ */
+  --btn-min-height: calc(11.5 * var(--base-unit));
+  --btn-min-width: calc(29.5 * var(--base-unit));
+  --btn-padding-v: calc(1.5 * var(--base-unit));
+  --btn-padding-h: calc(6 * var(--base-unit));
+  --btn-border-slice: 3;
+  --btn-border-width: calc(1.5 * var(--base-unit));
+  --btn-default-offset: calc(2.5 * var(--base-unit));
+  --btn-default-border-slice: 7;
+  --btn-default-border-width: calc(3.5 * var(--base-unit));
+
+  /* ═══════════════════════════════════════════════
+     INPUT CONTROLS
+     ═══════════════════════════════════════════════ */
+  --input-padding-v: calc(1.5 * var(--base-unit));
+  --input-padding-h: calc(3 * var(--base-unit));
+
+  /* ═══════════════════════════════════════════════
+     INACTIVE TITLE BAR BUTTONS
+     ═══════════════════════════════════════════════ */
+  --inactive-button-size: calc(7.5 * var(--base-unit));
+  --inactive-button-inner-size: calc(3.5 * var(--base-unit));
+  --inactive-button-margin: calc(3 * var(--base-unit));
+
+  /* ═══════════════════════════════════════════════
+     RESIZE BUTTON
+     ═══════════════════════════════════════════════ */
+  --resize-inner-offset: calc(1.5 * var(--base-unit));
+
+  /* ═══════════════════════════════════════════════
+     SELECT DROPDOWN
+     ═══════════════════════════════════════════════ */
+  --select-padding-left: calc(15 * var(--base-unit));
+  --select-padding-right: calc(35 * var(--base-unit));
+  --select-arrow-offset: calc(5 * var(--base-unit));
+  --select-shadow-inset: calc(3 * var(--base-unit));
+
+  /* ═══════════════════════════════════════════════
+     MENU ITEMS
+     ═══════════════════════════════════════════════ */
+  --menu-padding-h: calc(10 * var(--base-unit));
+  --menu-item-padding-h: calc(7 * var(--base-unit));
+  --menu-item-padding-v: calc(1 * var(--base-unit));
+  --menu-divider-line-left: calc(14 * var(--base-unit));
+
+  /* ═══════════════════════════════════════════════
+     MODAL DIALOG
+     ═══════════════════════════════════════════════ */
+  --dialog-content-padding: calc(6.5 * var(--base-unit));
+  --standard-dialog-padding: calc(5 * var(--base-unit));
+
+  /* ═══════════════════════════════════════════════
+     TITLE BAR BUTTON MARGINS
+     ═══════════════════════════════════════════════ */
+  --title-bar-padding: calc(0.5 * var(--base-unit));
+  --title-bar-padding-h: calc(3.5 * var(--base-unit));
+  --title-button-margin: calc(2.5 * var(--base-unit));
+  --title-button-close-margin: calc(3.5 * var(--base-unit));
+  --title-button-resize-margin: calc(3.5 * var(--base-unit));
+
+  /* ═══════════════════════════════════════════════
+     TITLE TEXT
+     ═══════════════════════════════════════════════ */
+  --title-padding-left: calc(7 * var(--base-unit));
+  --title-padding-right: calc(5 * var(--base-unit));
+
+  /* ═══════════════════════════════════════════════
+     PATTERNS
+     ═══════════════════════════════════════════════ */
+  --pattern-size: calc(2 * var(--base-unit));
+  --scrollbar-pattern-width: calc(4 * var(--base-unit));
+  --scrollbar-pattern-height: calc(2 * var(--base-unit));
 }

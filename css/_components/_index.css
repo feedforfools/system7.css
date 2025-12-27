@@ -1,8 +1,8 @@
 @import "_window.css";
 @import "_window-title-bar.css";
 @import "_window-dialog.css";
-@import "_scrollbar.css";
-@import "_scrollbar-disabled.css";
 @import "_buttons.css";
 @import "_forms.css";
 @import "_menus.css";
+@import "_scrollbar-thumb.css";
+@import "_scrollbar-arrows.css";

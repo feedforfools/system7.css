@@ -1,0 +1,218 @@
+/**
+ * Scrollbar Arrows & Corner
+ * SVG-based components: arrow buttons (all directions) and resize corner
+ */
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR BUTTONS - Display
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar-button:horizontal:start:decrement,
+::-webkit-scrollbar-button:horizontal:end:increment,
+::-webkit-scrollbar-button:vertical:start:decrement,
+::-webkit-scrollbar-button:vertical:end:increment {
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR BUTTONS - Vertical Base
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar-button:vertical:start,
+::-webkit-scrollbar-button:vertical:end {
+  background-color: var(--scrollbar-arrow-bg);
+  border-left: var(--border-width) solid var(--border-active);
+  height: var(--scrollbar-button-size);
+  width: var(--scrollbar-button-size);
+  box-shadow:
+    inset var(--border-width) var(--border-width) 0 var(--color-white),
+    inset calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0 var(--title-bar-stripe);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+::-webkit-scrollbar-button:vertical:start {
+  border-bottom: var(--border-width) solid var(--border-active);
+}
+
+::-webkit-scrollbar-button:vertical:end {
+  border-top: var(--border-width) solid var(--border-active);
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR BUTTONS - Horizontal Base
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar-button:horizontal:start,
+::-webkit-scrollbar-button:horizontal:end {
+  background-color: var(--scrollbar-arrow-bg);
+  border-top: var(--border-width) solid var(--border-active);
+  height: var(--scrollbar-button-size);
+  width: var(--scrollbar-button-size);
+  box-shadow:
+    inset var(--border-width) var(--border-width) 0 var(--color-white),
+    inset calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0 var(--title-bar-stripe);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+::-webkit-scrollbar-button:horizontal:start {
+  border-right: var(--border-width) solid var(--border-active);
+}
+
+::-webkit-scrollbar-button:horizontal:end {
+  border-left: var(--border-width) solid var(--border-active);
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR ARROW SIZE (shared)
+   Arrow SVG is 11x10, scaled by base-unit
+   ═══════════════════════════════════════════════ */
+
+:root {
+  --scrollbar-arrow-width: calc(11 * var(--base-unit));
+  --scrollbar-arrow-height: calc(10 * var(--base-unit));
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR ARROWS - Normal State
+   Single SVG rotated for all directions
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar-button:vertical:start:decrement {
+  background-image: url('../../icon/scrollbar-arrow-up.svg');
+  background-size: var(--scrollbar-arrow-width) var(--scrollbar-arrow-height);
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+  background-image: url('../../icon/scrollbar-arrow-down.svg');
+  background-size: var(--scrollbar-arrow-width) var(--scrollbar-arrow-height);
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement {
+  background-image: url('../../icon/scrollbar-arrow-left.svg');
+  background-size: var(--scrollbar-arrow-height) var(--scrollbar-arrow-width);
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment {
+  background-image: url('../../icon/scrollbar-arrow-right.svg');
+  background-size: var(--scrollbar-arrow-height) var(--scrollbar-arrow-width);
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR ARROWS - Active/Pressed State
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar-button:vertical:start:decrement:active {
+  background-image: url('../../icon/scrollbar-arrow-active-up.svg');
+  background-size: var(--scrollbar-arrow-width) var(--scrollbar-arrow-height);
+}
+
+::-webkit-scrollbar-button:vertical:end:increment:active {
+  background-image: url('../../icon/scrollbar-arrow-active-down.svg');
+  background-size: var(--scrollbar-arrow-width) var(--scrollbar-arrow-height);
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement:active {
+  background-image: url('../../icon/scrollbar-arrow-active-left.svg');
+  background-size: var(--scrollbar-arrow-height) var(--scrollbar-arrow-width);
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment:active {
+  background-image: url('../../icon/scrollbar-arrow-active-right.svg');
+  background-size: var(--scrollbar-arrow-height) var(--scrollbar-arrow-width);
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR ARROWS - Disabled State
+   For windows with .no-scroll, .no-scroll-v, or .no-scroll-h classes
+   ═══════════════════════════════════════════════ */
+
+/* Disabled button size variable */
+.window.no-scroll,
+.window.no-scroll-v,
+.window.no-scroll-h {
+  --scrollbar-button-size-disabled: var(--scrollbar-button-size);
+}
+
+/* Disabled vertical buttons base */
+.window.no-scroll .window-pane::-webkit-scrollbar-button:vertical:start,
+.window.no-scroll .window-pane::-webkit-scrollbar-button:vertical:end,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-button:vertical:start,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-button:vertical:end {
+  background-color: var(--surface-header);
+  border-left: var(--border-width) solid var(--border-active);
+  box-shadow: none;
+  width: var(--scrollbar-button-size-disabled);
+  height: var(--scrollbar-button-size-disabled);
+}
+
+/* Disabled horizontal buttons base */
+.window.no-scroll .window-pane::-webkit-scrollbar-button:horizontal:start,
+.window.no-scroll .window-pane::-webkit-scrollbar-button:horizontal:end,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-button:horizontal:start,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-button:horizontal:end {
+  background-color: var(--surface-header);
+  border-top: var(--border-width) solid var(--border-active);
+  box-shadow: none;
+  width: var(--scrollbar-button-size-disabled);
+  height: var(--scrollbar-button-size-disabled);
+}
+
+/* Disabled vertical up arrow */
+.window.no-scroll .window-pane::-webkit-scrollbar-button:vertical:start:decrement,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-button:vertical:start:decrement {
+  background-image: url('../../icon/scrollbar-arrow-disabled-up.svg');
+  background-size: var(--scrollbar-arrow-width) var(--scrollbar-arrow-height);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-bottom: none;
+  box-shadow: inset 0 calc(-1 * var(--border-width)) 0 0 var(--border-inactive);
+}
+
+/* Disabled vertical down arrow */
+.window.no-scroll .window-pane::-webkit-scrollbar-button:vertical:end:increment,
+.window.no-scroll-v .window-pane::-webkit-scrollbar-button:vertical:end:increment {
+  background-image: url('../../icon/scrollbar-arrow-disabled-down.svg');
+  background-size: var(--scrollbar-arrow-width) var(--scrollbar-arrow-height);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-top: none;
+  box-shadow: inset 0 var(--border-width) 0 0 var(--border-inactive);
+}
+
+/* Disabled horizontal left arrow */
+.window.no-scroll .window-pane::-webkit-scrollbar-button:horizontal:start:decrement,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-button:horizontal:start:decrement {
+  background-image: url('../../icon/scrollbar-arrow-disabled-left.svg');
+  background-size: var(--scrollbar-arrow-height) var(--scrollbar-arrow-width);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-right: none;
+  box-shadow: inset calc(-1 * var(--border-width)) 0 0 0 var(--border-inactive);
+}
+
+/* Disabled horizontal right arrow */
+.window.no-scroll .window-pane::-webkit-scrollbar-button:horizontal:end:increment,
+.window.no-scroll-h .window-pane::-webkit-scrollbar-button:horizontal:end:increment {
+  background-image: url('../../icon/scrollbar-arrow-disabled-right.svg');
+  background-size: var(--scrollbar-arrow-height) var(--scrollbar-arrow-width);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-left: none;
+  box-shadow: inset var(--border-width) 0 0 0 var(--border-inactive);
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR CORNER
+   ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar-corner {
+  border-left: var(--border-width) solid var(--border-active);
+  border-top: var(--border-width) solid var(--border-active);
+  background-color: var(--surface-header);
+  background-image: url('../../icon/resize.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: calc(100% - var(--border-width) * 2);
+}

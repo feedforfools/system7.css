@@ -9,9 +9,9 @@
      ═══════════════════════════════════════════════ */
   --window-border-active: var(--border-width) solid var(--border-active);
   --window-border-inactive: var(--border-width) solid var(--border-inactive);
-  --window-shadow-active: 2px 2px 0 var(--drop-shadow);
-  --window-shadow-inactive: 2px 2px 0 var(--drop-shadow);
-  --box-shadow: 2px 2px 0 var(--drop-shadow);
+  --window-shadow-active: var(--shadow-offset) var(--shadow-offset) 0 var(--drop-shadow);
+  --window-shadow-inactive: var(--shadow-offset) var(--shadow-offset) 0 var(--drop-shadow);
+  --box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--drop-shadow);
 
   /* ═══════════════════════════════════════════════
      TITLE BAR STRIPE CALCULATIONS
@@ -34,7 +34,7 @@
   /* ═══════════════════════════════════════════════
      CHECKBOX CALCULATIONS
      ═══════════════════════════════════════════════ */
-  --checkmark-pixel: 2px;
+  --checkmark-pixel: var(--base-unit);
   --checkmark-steps: 10;
   --checkmark-width: calc(var(--checkmark-pixel) * var(--checkmark-steps));
 }

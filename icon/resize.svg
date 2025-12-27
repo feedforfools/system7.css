@@ -1,0 +1,35 @@
+<!-- filepath: /Users/dr/Engineering/system7.css/icon/scrollbar-corner.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+  <!-- Scrollbar corner resize grip -->
+  <!-- Colors: #333266 (shadow), #aaaaaa (inner bg), #ccccff (highlight) -->
+  
+  <!-- Larger square - outer shadow frame -->
+<rect x="1" y="1" width="9" height="1" fill="#333266"/>
+<rect x="1" y="1" width="1" height="9" fill="#333266"/>
+
+<!-- Larger square - highlight frame -->
+<rect x="2" y="2" width="8" height="1" fill="#ccccff"/>
+<rect x="2" y="2" width="1" height="8" fill="#ccccff"/>
+
+<!-- Larger square - inner fill -->
+<rect x="3" y="3" width="6" height="6" fill="#aaaaaa"/>
+
+<!-- Larger square - inner shadow -->
+<rect x="9" y="3" width="1" height="7" fill="#333266"/>
+<rect x="3" y="9" width="7" height="1" fill="#333266"/>
+
+<!-- Smaller square (overlapping) - outer shadow frame -->
+<rect x="0" y="0" width="6" height="1" fill="#333266"/>
+<rect x="0" y="0" width="1" height="6" fill="#333266"/>
+
+<!-- Smaller square - highlight frame -->
+<rect x="1" y="1" width="5" height="1" fill="#ccccff"/>
+<rect x="1" y="1" width="1" height="5" fill="#ccccff"/>
+
+<!-- Smaller square - inner fill -->
+<rect x="2" y="2" width="3" height="3" fill="#aaaaaa"/>
+
+<!-- Smaller square - inner shadow -->
+<rect x="2" y="5" width="4" height="1" fill="#333266"/>
+<rect x="5" y="2" width="1" height="4" fill="#333266"/>
+</svg>

@@ -6,22 +6,22 @@
 
 .btn,
 .btn-default {
-  min-height: 23px;
-  min-width: 59px;
-  padding: 3px 12px;
+  min-height: var(--btn-min-height);
+  min-width: var(--btn-min-width);
+  padding: var(--btn-padding-v) var(--btn-padding-h);
   text-align: center;
   background: var(--color-white);
   background-clip: padding-box;
   color: var(--text-color);
   text-decoration: none;
-  font-size: 18px;
+  font-size: calc(9 * var(--base-unit));
   font-family: Chicago_12;
   cursor: pointer;
   border-style: solid;
-  border-width: 1px;
+  border-width: calc(0.5 * var(--base-unit));
   border-image-source: url('../../icon/button.svg');
-  border-image-slice: 3 fill;
-  border-image-width: 3px;
+  border-image-slice: var(--btn-border-slice) fill;
+  border-image-width: var(--btn-border-width);
 }
 
 .btn:active {
@@ -44,15 +44,15 @@
   content: '';
   position: absolute;
   /* Position outside the button */
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
+  top: calc(-1 * var(--btn-default-offset));
+  left: calc(-1 * var(--btn-default-offset));
+  right: calc(-1 * var(--btn-default-offset));
+  bottom: calc(-1 * var(--btn-default-offset));
   border-style: solid;
-  border-width: 1px;
+  border-width: calc(0.5 * var(--base-unit));
   border-image-source: url('../../icon/button-default.svg');
-  border-image-slice: 7; /* no fill - transparent center */
-  border-image-width: 7px;
+  border-image-slice: var(--btn-default-border-slice); /* no fill - transparent center */
+  border-image-width: var(--btn-default-border-width);
   pointer-events: none; /* clicks pass through to button */
 }
 

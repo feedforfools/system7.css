@@ -8,7 +8,7 @@
    ═══════════════════════════════════════════════ */
 
 .standard-dialog {
-  padding: 10px;
+  padding: var(--standard-dialog-padding);
   background: var(--surface);
   border: var(--window-border-active);
 }
@@ -33,6 +33,6 @@
 }
 
 .modal-dialog-content {
-  padding: 13px;
+  padding: var(--dialog-content-padding);
   margin: calc(4 * var(--dialog-frame-width)); /* Account for the frame width */
 }
