@@ -25,8 +25,8 @@
   height: var(--scrollbar-button-size);
   width: var(--scrollbar-button-size);
   box-shadow:
-    inset var(--border-width) var(--border-width) 0 var(--color-white),
-    inset calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0 var(--title-bar-stripe);
+  inset calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0 var(--title-bar-stripe),
+  inset var(--border-width) var(--border-width) 0 var(--color-white);
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -50,8 +50,8 @@
   height: var(--scrollbar-button-size);
   width: var(--scrollbar-button-size);
   box-shadow:
-    inset var(--border-width) var(--border-width) 0 var(--color-white),
-    inset calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0 var(--title-bar-stripe);
+  inset calc(-1 * var(--border-width)) calc(-1 * var(--border-width)) 0 var(--title-bar-stripe),
+  inset var(--border-width) var(--border-width) 0 var(--color-white);
   background-repeat: no-repeat;
   background-position: center;
 }
